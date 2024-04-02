@@ -133,7 +133,7 @@ tr:last-child {
   color: var(--link-color);
 }
 
-@media only screen and (max-width: 430px) {
+@media only screen and (max-width: 600px) {
   body {
     width: 375px;
     width: 100%;
@@ -149,8 +149,12 @@ tr:last-child {
     border-radius: 0;
   }
 
+  h1 {
+    color: #000;
+  }
+
   .img-container img {
-    transform: scale(1.05);
+    width: 100vw;
     margin: -10px -5px 10px -7px;
     border-radius: 0;
   }
