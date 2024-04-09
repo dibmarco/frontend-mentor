@@ -105,17 +105,32 @@ footer {
 .attribution {
   font-size: 11px;
   text-align: center;
+  width: 100%;
+  padding: 0.8rem;
 }
 .attribution a {
-  color: hsl(228, 45%, 44%);
+  color: var(--green);
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
-@media (min-width: 31em) {
+.attribution a:hover {
+  color: var(--green);
+  text-decoration: underline;
+}
+
+@media (min-width: 25em) {
     main {
-        width: 32rem;
+        width: 36rem;
+        padding: 5rem 0;
     }
 
+    .container-links {
+        row-gap: 1.6rem;
+      }
+
     .link {
-        width: 28rem;
+        width: 32rem;
+        height: 4.4rem;
     }
 }
