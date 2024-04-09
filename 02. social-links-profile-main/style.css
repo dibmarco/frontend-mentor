@@ -136,7 +136,7 @@ footer {
     }
 }
 
-@media (max-height: 375px) {
+@media (max-height: 30em) {
 
     body {
         height: 100%;
