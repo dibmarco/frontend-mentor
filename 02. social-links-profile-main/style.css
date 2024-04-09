@@ -108,6 +108,7 @@ footer {
   width: 100%;
   padding: 0.8rem;
 }
+
 .attribution a {
   color: var(--green);
   text-decoration: none;
@@ -132,5 +133,21 @@ footer {
     .link {
         width: 32rem;
         height: 4.4rem;
+    }
+}
+
+@media (orientation: landscape) {
+
+    body {
+        height: 100%;
+        width: 100vw;
+    }
+    
+    main {
+        margin: 1.6rem auto;
+    }
+
+    .attribution {
+        display: none;
     }
 }
