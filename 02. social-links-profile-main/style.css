@@ -43,7 +43,6 @@ main {
   padding: 3.6rem 0;
 }
 
-
 .profile-img {
   height: 9rem;
   width: 9rem;
@@ -65,8 +64,8 @@ main {
 }
 
 .profile-bio {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
 }
 
 .container-links {
@@ -121,33 +120,38 @@ footer {
 }
 
 @media (min-width: 25em) {
-    main {
-        width: 36rem;
-        padding: 5rem 0;
-    }
+  main {
+    width: 36rem;
+    padding: 5rem 0;
+  }
 
-    .container-links {
-        row-gap: 1.6rem;
-      }
+  .container-links {
+    row-gap: 1.6rem;
+  }
 
-    .link {
-        width: 32rem;
-        height: 4.4rem;
-    }
+  .link {
+    width: 32rem;
+    height: 4.4rem;
+  }
 }
 
-@media (max-height: 30em) {
+@media (max-height: 39em) {
+  body {
+    height: 100%;
+    width: 100vw;
+  }
 
-    body {
-        height: 100%;
-        width: 100vw;
-    }
-    
-    main {
-        margin: 1.6rem auto;
-    }
+  main {
+    margin: 1.6rem auto;
+  }
 
-    .attribution {
-        display: none;
-    }
+  .attribution {
+    display: none;
+  }
+}
+
+@media (max-height: 42em) {
+  main {
+    padding: 2.6rem 0;
+  }
 }
