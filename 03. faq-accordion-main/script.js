@@ -1,9 +1,18 @@
 "use strict";
 
+// Select elements
+
 const headers = document.querySelectorAll('.q-and-a--header')
 const openBtn = document.querySelectorAll(".open-btn");
 const closeBtn = document.querySelectorAll(".close-btn");
 const answerContainer = document.querySelectorAll(".answer-container");
+
+// Immediately set height to 0 to trigger transition
+answerContainer.forEach((el) => {
+  el.style.height = "0";
+});
+
+// Add event listener
 
 headers.forEach((header, i) => {
   header.addEventListener("click", () => {
@@ -25,9 +34,4 @@ headers.forEach((header, i) => {
       }, 300);
     }
   });
-});
-
-// Immediately set height to 0 to trigger transition
-answerContainer.forEach((el) => {
-  el.style.height = "0";
 });
