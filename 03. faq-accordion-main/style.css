@@ -64,7 +64,7 @@ body {
   width: 2rem;
 }
 
-.container img:hover {
+.container > img:hover {
   cursor: pointer;
 }
 
@@ -128,7 +128,6 @@ body {
 
 .hidden {
   display: none;
-  opacity: 0;
 }
 
 /* .attribution {
