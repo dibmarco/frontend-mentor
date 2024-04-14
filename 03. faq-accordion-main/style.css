@@ -88,16 +88,26 @@ body {
   border-bottom: none;
 }
 
+.q-and-a--header {
+  cursor: pointer;
+}
+
+.q-and-a--header:hover,
+.q-and-a--header:active {
+  color: hsl(300, 100%, 25%);
+}
+
+.answer-container {
+  height: auto;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
 .question {
   font-size: 1.8rem;
   font-weight: 600;
   margin-bottom: 1rem;
   cursor: pointer;
-}
-
-.question:hover,
-.question:active {
-  color: hsl(300, 100%, 25%);
 }
 
 .answer {
@@ -145,7 +155,7 @@ body {
 
 @media (min-width: 30em) {
   .container {
-    width: 50rem;
+    width: 60rem;
   }
 }
 

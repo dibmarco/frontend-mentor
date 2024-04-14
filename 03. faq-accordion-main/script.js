@@ -1,32 +1,33 @@
 "use strict";
 
-const questions = document.querySelectorAll(".question");
-
+const headers = document.querySelectorAll('.q-and-a--header')
 const openBtn = document.querySelectorAll(".open-btn");
 const closeBtn = document.querySelectorAll(".close-btn");
-const answers = document.querySelectorAll(".answer");
+const answerContainer = document.querySelectorAll(".answer-container");
 
-
-const openClose = function (i) {
-  answers[i].classList.toggle("hidden");
-  openBtn[i].classList.toggle("hidden");
-  closeBtn[i].classList.toggle("hidden");
-};
-
-questions.forEach((question, i) => {
-  question.addEventListener("click", function () {
-    openClose(i);
+headers.forEach((header, i) => {
+  header.addEventListener("click", () => {
+    if (header.classList.contains("close")) {
+      header.classList.remove('close');
+      openBtn[i].classList.toggle('hidden');
+      closeBtn[i].classList.toggle('hidden');
+      answerContainer[i].classList.toggle("hidden");
+      // Adjust height of content to match text height
+      const textHeight = answerContainer[i].querySelector(".answer").offsetHeight;
+      answerContainer[i].style.height = answerContainer[i].classList.contains("hidden") ? 0 : textHeight + "px";
+    } else {
+      header.classList.add('close');
+      openBtn[i].classList.toggle('hidden');
+      closeBtn[i].classList.toggle('hidden');
+      answerContainer[i].style.height = 0;
+      setTimeout(() => {
+        answerContainer[i].classList.toggle("hidden")
+      }, 300);
+    }
   });
 });
 
-openBtn.forEach((btn, i) => {
-  btn.addEventListener("click", function () {
-    openClose(i);
-  });
-});
-
-closeBtn.forEach((btn, i) => {
-  btn.addEventListener("click", function () {
-    openClose(i);
-  });
+// Immediately set height to 0 to trigger transition
+answerContainer.forEach((el) => {
+  el.style.height = "0";
 });
