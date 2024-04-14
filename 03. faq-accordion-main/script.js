@@ -9,8 +9,8 @@ const answers = document.querySelectorAll(".answer");
 
 const openClose = function (i) {
   answers[i].classList.toggle("hidden");
-  openBtn[i].classList.toggle("btn-hidden");
-  closeBtn[i].classList.toggle("btn-hidden");
+  openBtn[i].classList.toggle("hidden");
+  closeBtn[i].classList.toggle("hidden");
 };
 
 questions.forEach((question, i) => {
