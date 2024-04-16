@@ -1,7 +1,6 @@
 "use strict";
 
 // Select elements
-
 const headers = document.querySelectorAll(".q-and-a--header");
 const openBtn = document.querySelectorAll(".open-btn");
 const closeBtn = document.querySelectorAll(".close-btn");
