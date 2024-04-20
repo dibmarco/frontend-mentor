@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* - Weights: 400, 700 */
+
+:root {
+--white: hsl(0, 0%, 100%);
+--light-grey: hsl(217, 12%, 63%);
+--medium-grey: hsl(216, 12%, 54%);
+--dark-blue: hsl(213, 19%, 18%);
+--very-dark-blue: hsl(216, 12%, 8%);
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100vh;
+    font-family: "Overpass", sans-serif;
+}
+
+.container {
+    /* border: 1px solid red; */
+    width: 35rem;
+    height: 25rem;
+    perspective: 800px;
+}
+
+.container:hover > .card {
+    transform: rotateY(180deg);
+}
+
+.card {
+    height: 100%;
+    width: 100%;
+    transition: transform 1.5s ease;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.front,
+.back {
+    height: 100%;
+    width: 100%;
+    border-radius: 2rem;
+    box-shadow: 0 0 5px 2px rgba(50, 50, 50, 0.25);
+    backface-visibility: hidden;
+    position: absolute;
+}
+
+.front {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.rating-list {
+    display: flex;
+    list-style: none;
+    border: 1px solid darkblue;
+}
+
+.back{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    /* background-color: #3a3a3a; */
+    transform: rotateY(180deg);
+}
+
+
+
+/* .attribution {
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+} */
