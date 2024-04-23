@@ -10,6 +10,7 @@
   --white: hsl(0, 0%, 100%);
   --light-grey: hsl(217, 12%, 63%);
   --medium-grey: hsl(216, 12%, 54%);
+  --dark-grey: hsl(212, 15%, 25%);
   --dark-blue: hsl(213, 19%, 18%);
   --very-dark-blue: hsl(216, 12%, 8%);
   --orange: hsl(25, 97%, 53%);
@@ -23,6 +24,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 
   height: 100vh;
   font-family: "Overpass", sans-serif;
@@ -107,7 +109,7 @@ body {
   height: 4.5rem;
   padding: 1rem;
   border-radius: 50%;
-  background-color: hsl(212, 15%, 25%);
+  background-color: var(--dark-grey);
   font-size: 2rem;
   font-weight: 700;
   color: var(--light-grey);
@@ -160,7 +162,7 @@ body {
 
 .rating-result {
   align-self: self-end;
-  background-color: hsl(212, 15%, 25%);
+  background-color: var(--dark-grey);
   padding: 0.8rem 1.5rem;
   border-radius: 100px;
   font-size: 1.6rem;
@@ -178,18 +180,32 @@ body {
   color: var(--light-grey);
 }
 
-/* .attribution {
-  font-size: 11px;
+footer {
+  position: fixed;
+  bottom: 0;
   text-align: center;
+  color: var(--light-grey);
+  padding: 1rem;
 }
-.attribution a {
-  color: hsl(228, 45%, 44%);
-} */
+
+footer a {
+  text-decoration: none;
+  color: var(--orange);
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
 
 @media (min-width: 768px) {
   .container {
     width: 38rem;
     height: 38rem;
   }
+}
 
+@media (max-height: 415px) {
+  footer {
+    display: none;
+  }
 }
