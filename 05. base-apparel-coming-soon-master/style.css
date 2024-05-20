@@ -6,7 +6,7 @@
 
 body {
   font-size: 62.5%;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: "Josefin Sans", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,7 +27,7 @@ main {
   justify-content: center;
   align-items: flex-start;
   width: 60%;
-  padding: 8rem;
+  padding: 0 8rem;
   background-image: url(./images/bg-pattern-desktop.svg);
   background-position: center;
   background-size: cover;
@@ -133,4 +133,53 @@ main {
 
 .hidden {
   display: none;
+}
+
+@media (max-width: 940px) {
+  .content-wrapper {
+    width: 66%;
+  }
+
+  .image-aside {
+    width: 34%;
+  }
+}
+
+@media (max-width: 850px) {
+  .content-wrapper {
+    padding: 0 6rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .content-wrapper {
+    width: 70%;
+    padding: 0 4rem;
+  }
+
+  .image-aside {
+    width: 30%;
+  }
+}
+
+@media (max-width: 620px) {
+  .content-wrapper {
+    padding: 0 2rem;
+  }
+}
+
+@media (max-width: 530px) {
+  .content-wrapper {
+    width: 100%;
+  }
+
+  .image-aside {
+    display: none;
+  }
+}
+
+@media (max-width: 370px) {
+  .content-wrapper {
+    padding: 0 1rem;
+  }
 }
