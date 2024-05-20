@@ -5,42 +5,8 @@
 }
 
 body {
-    width: 100%;
-    font-size: 62.5%;
-}
-
-main {
-    display: grid;
-    grid-template-rows: repeat(5, 1fr);
-
-    margin: 0 auto;
-    width: 375px;
-    height: 100vh;
-    background-color: antiquewhite;
-    text-align: center;
-}
-
-header {
-    align-self: center;
-    justify-self: start;
-}
-
-header, h1, p, .email-container {
-    padding: 0 2.2rem;
-}
-
-h1, p {
-    align-self: center;
-}
-
-h1 {
-    font-size: 2.2rem;
-    line-height: 0.8;
-}
-
-p {
-    font-size: 1rem;
-    line-height: 1.2;
+  font-size: 62.5%;
+  font-family: Josefin Sans, sans-serif;
 }
 
 .attribution {
@@ -53,5 +19,17 @@ p {
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
+
+/* @media (min-width: 600px) {
+    .hero-mobile {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-desktop {
+        display: none;
+    }
+} */
