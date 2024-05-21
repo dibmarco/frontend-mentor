@@ -67,3 +67,7 @@ function checkEmail() {
 }
 
 submitBtn.addEventListener("click", checkEmail);
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") checkEmail();
+})
