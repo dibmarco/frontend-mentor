@@ -86,6 +86,7 @@ main {
   border: 1px solid hsl(0, 36%, 70%);
   border-radius: 100px;
   height: 3rem;
+  color: hsl(0, 36%, 70%);
 }
 
 .email-input::placeholder {
@@ -93,7 +94,7 @@ main {
 }
 
 .email-input:focus {
-  border-color: hsl(0, 74%, 74%);
+  border: 1.6px solid rgb(200, 110, 110);
   outline: none;
 }
 
