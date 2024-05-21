@@ -38,6 +38,19 @@ main {
   max-width: 100%;
 }
 
+.image-mobile {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  width: 100vw;
+  margin-left: -2rem;
+}
+
+.image-mobile img {
+  width: 110vw;
+  display: block;
+}
+
 .main-heading {
   margin-top: 2rem;
   font-size: clamp(2.5rem, 2.0585rem + 2.0183vw, 3.875rem);
@@ -95,10 +108,11 @@ main {
   background-image: linear-gradient(135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%));
   cursor: pointer;
   border: 1px solid hsl(0, 36%, 70%);
+  fill: #fff;
 }
 
 .submit-button:hover {
-  box-shadow: 0.5px 0.8px 0.8px hsla(0, 36%, 70%, 0.4);
+  box-shadow: 2px 2px 3px hsla(0, 36%, 70%, 0.8);
 }
 
 .submit-button:active {
@@ -135,9 +149,22 @@ main {
   display: none;
 }
 
+/* General responsive adjustments */
 @media (max-width: 940px) {
   .content-wrapper {
     width: 66%;
+  }
+
+  .logo-header img {
+    width: 70%;
+  }
+
+  .main-heading {
+    font-size: 1.8rem;
+  }
+
+  .description {
+    font-size: 1.2rem;
   }
 
   .image-aside {
@@ -146,6 +173,10 @@ main {
 }
 
 @media (max-width: 850px) {
+  body {
+    overflow: visible;
+  }
+
   .content-wrapper {
     padding: 0 6rem;
   }
@@ -173,7 +204,19 @@ main {
     width: 100%;
   }
 
+  .main-heading,
+  .description {
+    width: 100%;
+    text-align: center;
+  }
+
   .image-aside {
+    display: none;
+  }
+}
+
+@media (min-width: 530px) {
+  .image-mobile {
     display: none;
   }
 }
@@ -181,5 +224,51 @@ main {
 @media (max-width: 370px) {
   .content-wrapper {
     padding: 0 1rem;
+  }
+}
+
+/* Landscape specific adjustments */
+@media (orientation: landscape) and (max-height: 376px) {
+  .content-wrapper {
+    width: 100%;
+    padding: 0 2rem;
+  }
+
+  .main-heading {
+    font-size: 2rem;
+  }
+
+  .image-aside {
+    display: none;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 415px) {
+  .content-wrapper {
+    width: 100%;
+    padding: 0 2rem;
+  }
+
+  .main-heading {
+    font-size: 2rem;
+  }
+
+  .image-aside {
+    display: none;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 431px) {
+  .content-wrapper {
+    width: 100%;
+    padding: 0 2rem;
+  }
+
+  .main-heading {
+    font-size: 2rem;
+  }
+
+  .image-aside {
+    display: none;
   }
 }
