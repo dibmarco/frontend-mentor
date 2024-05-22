@@ -1,0 +1,172 @@
+/* General responsive adjustments */
+@media (max-width: 940px) {
+  .content-wrapper {
+    width: 66%;
+  }
+
+  .logo-header img {
+    width: 70%;
+  }
+
+  .main-heading {
+    font-size: 1.8rem;
+  }
+
+  .description {
+    font-size: 1.2rem;
+  }
+
+  .image-aside {
+    width: 34%;
+  }
+}
+
+@media (max-width: 965px) {
+  .content-wrapper {
+    padding: 0 7rem;
+  }
+}
+
+@media (max-width: 850px) {
+  body {
+    overflow: visible;
+  }
+
+  .content-wrapper {
+    padding: 0 6rem;
+  }
+}
+
+@media (max-width: 878px) {
+  .content-wrapper {
+    padding: 0 4rem;
+  }
+}
+
+@media (max-width: 780px) {
+  .content-wrapper {
+    width: 70%;
+    padding: 0 4rem;
+  }
+
+  .image-aside {
+    width: 30%;
+  }
+}
+
+@media (max-width: 645px) {
+  .content-wrapper {
+    padding: 0 2rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .content-wrapper {
+    padding: 0 2rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .content-wrapper {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 530px) {
+  .content-wrapper {
+    width: 100%;
+  }
+
+  .image-mobile {
+    margin-top: 0.5rem;
+  }
+
+  .main-heading,
+  .description {
+    width: 100%;
+    text-align: center;
+  }
+
+  .main-heading {
+    margin-top: 1rem;
+    font-size: 1.4rem;
+  }
+
+  .description {
+    font-size: 1.1rem;
+  }
+
+  .image-aside {
+    display: none;
+  }
+
+  .email-container {
+    margin-top: 1rem;
+  }
+}
+
+@media (min-width: 530px) {
+  .image-mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 370px) {
+  .content-wrapper {
+    padding: 0 1rem;
+  }
+}
+
+/* Landscape specific adjustments */
+@media (orientation: landscape) and (max-height: 376px) {
+  .content-wrapper {
+    width: 100%;
+    padding: 0 3rem;
+  }
+
+  .main-heading {
+    margin-top: 1rem;
+  }
+
+  .description {
+    margin-top: 0.8rem;
+  }
+
+  .email-container {
+    margin-top: 0.8rem;
+  }
+
+  .image-aside {
+    display: none;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 415px) {
+  .content-wrapper {
+    width: 100%;
+    padding: 0 2rem;
+  }
+
+  .main-heading {
+    font-size: 2rem;
+  }
+
+  .image-aside {
+    display: none;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 431px) {
+  .content-wrapper {
+    width: 100%;
+    padding: 0 2rem;
+  }
+
+  .main-heading {
+    font-size: 2rem;
+  }
+
+  .image-aside {
+    display: none;
+  }
+}
