@@ -5,14 +5,16 @@
 }
 
 body {
-  font-size: 62.5%;
-  font-family: "Josefin Sans", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
+
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+
+  font-size: 62.5%;
+  font-family: "Josefin Sans", sans-serif;
 }
 
 main {
@@ -26,6 +28,7 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+
   width: 60%;
   padding: 0 8rem;
   background-image: url(./images/bg-pattern-desktop.svg);
@@ -41,6 +44,7 @@ main {
 .image-mobile {
   display: flex;
   justify-content: center;
+
   margin-top: 1rem;
   width: 100vw;
   margin-left: -2rem;
@@ -77,11 +81,20 @@ main {
   align-items: center;
   margin-top: 2rem;
   width: 100%;
+
+  position: relative;
+}
+
+.alert-msg {
+  position: absolute;
+  top: 4rem;
+  left: 1.5rem;
+  font-size: 0.8rem;
 }
 
 .email-input {
   flex: 1;
-  padding: 1rem;
+  padding: 1.5rem;
   font-size: 1.4rem;
   border: 1px solid hsl(0, 36%, 70%);
   border-radius: 100px;
@@ -94,7 +107,7 @@ main {
 }
 
 .email-input:focus {
-  border: 1.6px solid rgb(200, 110, 110);
+  box-shadow: inset 0 0 0 1.1px rgb(176, 100, 100);
   outline: none;
 }
 
@@ -102,6 +115,9 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  position: relative;
+  
   width: 6rem;
   height: 3rem;
   margin-left: -6rem;
@@ -123,6 +139,11 @@ main {
 .submit-button svg {
   width: 1.5rem;
   height: 1.5rem;
+}
+
+.icon-error {
+  position: absolute;
+  left: -35px;
 }
 
 .image-aside {
@@ -173,6 +194,12 @@ main {
   }
 }
 
+@media (max-width: 965px) {
+  .content-wrapper {
+    padding: 0 7rem;
+  }
+}
+
 @media (max-width: 850px) {
   body {
     overflow: visible;
@@ -183,7 +210,13 @@ main {
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 878px) {
+  .content-wrapper {
+    padding: 0 4rem;
+  }
+}
+
+@media (max-width: 780px) {
   .content-wrapper {
     width: 70%;
     padding: 0 4rem;
@@ -194,9 +227,21 @@ main {
   }
 }
 
+@media (max-width: 645px) {
+  .content-wrapper {
+    padding: 0 2rem;
+  }
+}
+
 @media (max-width: 620px) {
   .content-wrapper {
     padding: 0 2rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .content-wrapper {
+    padding: 0 1rem;
   }
 }
 

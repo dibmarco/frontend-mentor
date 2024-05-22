@@ -51,18 +51,24 @@
 
 const emailInput = document.querySelector(".email-input");
 const submitBtn = document.querySelector(".submit-button");
+const iconError = document.querySelector(".icon-error");
+const alertMsg = document.querySelector(".alert-msg");
 
 function checkEmail() {
     const email = emailInput.value;
     const pattern = emailInput.getAttribute('pattern');
     const regex = new RegExp(pattern);
-
-    emailInput.value = "";
     
     if (regex.test(email)) {
-        alert('Success');
+        iconError.classList.add("hidden");
+        emailInput.value = "";
+        alertMsg.style.color = "green";
+        alertMsg.textContent = "Thank you for subscribing!";
     } else {
-        alert('Invalid email');
+        iconError.classList.remove("hidden");
+        emailInput.style.color = "black";
+        alertMsg.style.color = "red";
+        alertMsg.textContent = "Please provide a valid email.";
     }
 }
 
