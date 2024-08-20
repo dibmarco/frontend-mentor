@@ -57,17 +57,35 @@ const desserts = [
 
 function App() {
   return (
-    <div>
-      {desserts.map((dessert) => (
-        <div>
-          <img src={dessert.img} alt={dessert.name} width="150" />
-          <p>{dessert.name}</p>
-          <p>{dessert.description}</p>
-          <p>{dessert.price}</p>
-        </div>
-      ))}
+    <div className="container">
+      <DessertItem desserts={desserts} />
+      <Cart />
     </div>
   );
+}
+
+function DessertItem({ desserts }) {
+  return (
+    <div>
+      <h1>Desserts</h1>
+      <div className="desserts-grid">
+        {desserts.map((dessert) => (
+          <div className="dessert-item">
+            <img src={dessert.img} alt={dessert.name} />
+            <div className="dessert-description">
+              <p>{dessert.name}</p>
+              <p>{dessert.description}</p>
+              <p>{dessert.price}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Cart() {
+  return <div className="cart">Cart</div>;
 }
 
 export default App;
