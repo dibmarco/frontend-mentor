@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const desserts = [
   {
     name: "Waffle",
@@ -58,28 +60,68 @@ const desserts = [
 function App() {
   return (
     <div className="container">
-      <DessertItem desserts={desserts} />
+      <DessertItems desserts={desserts} />
       <Cart />
     </div>
   );
 }
 
-function DessertItem({ desserts }) {
+function DessertItems({ desserts }) {
   return (
     <div>
       <h1>Desserts</h1>
       <div className="desserts-grid">
         {desserts.map((dessert) => (
-          <div className="dessert-item">
+          <div className="dessert-item" key={dessert.name}>
             <img src={dessert.img} alt={dessert.name} />
-            <div className="dessert-description">
-              <p>{dessert.name}</p>
-              <p>{dessert.description}</p>
-              <p>{dessert.price}</p>
+            <AddToCartBtn name={dessert.name} />
+            <div className="dessert-description-content">
+              <p className="dessert-name">{dessert.name}</p>
+              <p className="dessert-description">{dessert.description}</p>
+              <p className="dessert-price">${dessert.price}</p>
             </div>
           </div>
         ))}
       </div>
+    </div>
+  );
+}
+
+function AddToCartBtn({ name }) {
+  const [openButton, setOpenButton] = useState(false);
+  const [count, setCount] = useState(1);
+
+  function handlePlus() {
+    setCount(() => count + 1);
+  }
+
+  function handleMinus() {
+    if (count <= 1) {
+      setCount(1);
+      setOpenButton(false);
+    } else {
+      setCount(() => count - 1);
+    }
+  }
+
+  function handleClick() {
+    console.log(name); // Log the dessert name to the console
+    setOpenButton(true);
+  }
+
+  return openButton ? (
+    <div className="add-to-cart--btn open">
+      <p className="minus-item" onClick={handleMinus}>
+        -
+      </p>
+      {count}
+      <p className="plus-item" onClick={handlePlus}>
+        +
+      </p>
+    </div>
+  ) : (
+    <div className="add-to-cart--btn" onClick={handleClick}>
+      Add to Cart
     </div>
   );
 }

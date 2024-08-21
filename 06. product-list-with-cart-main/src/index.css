@@ -33,7 +33,7 @@ body {
   min-width: 35rem;
   max-width: 45rem;
 
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .dessert-item {
@@ -46,7 +46,7 @@ body {
   /* width: 20rem; */
 
   padding: 0.2rem;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .dessert-item > img {
@@ -54,9 +54,54 @@ body {
   border-radius: 10px;
 }
 
-.dessert-description {
+.dessert-description-content {
   width: 80%;
-  border: 1px solid black;
+ /*  border: 1px solid black; */
+}
+
+.dessert-name {
+  font-size: 0.8rem;
+}
+
+.dessert-description {
+  font-size: 0.9rem;
+}
+
+.dessert-price {
+  font-size: 0.9rem;
+}
+
+.add-to-cart--btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: -22px;
+
+  width: 7rem;
+  height: 1.8rem;
+  background-color: brown;
+  color: black;
+
+
+  border-radius: 200px;
+  cursor: pointer;
+}
+
+.open {
+  gap: 1rem;
+}
+
+.minus-item, .plus-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 1.1rem;
+  height: 1.1rem;
+  padding: 0.3rem;
+  border: 1px solid rgba(196, 176, 176, 0.5);
+  border-radius: 50%;
 }
 
 .cart {
