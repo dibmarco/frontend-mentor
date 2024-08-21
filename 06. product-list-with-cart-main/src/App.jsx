@@ -58,23 +58,32 @@ const desserts = [
 ];
 
 function App() {
-  const [units, setUnits] = useState(1);
-  const [selectedDessert, setSelectedDessert] = useState("");
+  const [itemsInCart, setItemsInCart] = useState([]);
+
+  function addItemInCart(name, count) {
+    setItemsInCart((prevItems) => {
+      const existingItem = prevItems.find(
+        (item) => item.selectedDessert === name
+      );
+      if (existingItem) {
+        return prevItems.map((item) =>
+          item.selectedDessert === name ? { ...item, units: count } : item
+        );
+      } else {
+        return [...prevItems, { selectedDessert: name, units: count }];
+      }
+    });
+  }
 
   return (
     <div className="container">
-      <DessertItems
-        desserts={desserts}
-        units={units}
-        setUnits={setUnits}
-        setSelectedDessert={setSelectedDessert}
-      />
-      <Cart units={units} selectedDessert={selectedDessert} />
+      <DessertItems desserts={desserts} addItemInCart={addItemInCart} />
+      <Cart itemsInCart={itemsInCart} />
     </div>
   );
 }
 
-function DessertItems({ desserts, setUnits, setSelectedDessert }) {
+function DessertItems({ desserts, addItemInCart }) {
   return (
     <div>
       <h1>Desserts</h1>
@@ -82,11 +91,7 @@ function DessertItems({ desserts, setUnits, setSelectedDessert }) {
         {desserts.map((dessert) => (
           <div className="dessert-item" key={dessert.name}>
             <img src={dessert.img} alt={dessert.name} />
-            <AddToCartBtn
-              name={dessert.name}
-              setUnits={setUnits}
-              setSelectedDessert={setSelectedDessert}
-            />
+            <AddToCartBtn name={dessert.name} addItemInCart={addItemInCart} />
             <div className="dessert-description-content">
               <p className="dessert-name">{dessert.name}</p>
               <p className="dessert-description">{dessert.description}</p>
@@ -99,32 +104,32 @@ function DessertItems({ desserts, setUnits, setSelectedDessert }) {
   );
 }
 
-function AddToCartBtn({ name, setUnits, setSelectedDessert }) {
+function AddToCartBtn({ name, addItemInCart }) {
   const [openButton, setOpenButton] = useState(false);
   const [count, setCount] = useState(1);
 
   function handlePlus() {
-    setCount(() => count + 1);
-    setUnits(() => count + 1);
+    const newCount = count + 1;
+    setCount(newCount);
+    addItemInCart(name, newCount);
   }
 
   function handleMinus() {
     if (count <= 1) {
       setCount(1);
       setOpenButton(false);
-      setUnits(count);
-      setSelectedDessert("");
+      addItemInCart(name, 0); // Remove from cart if count is 0
     } else {
-      setCount(() => count - 1);
-      setUnits(() => count - 1);
+      const newCount = count - 1;
+      setCount(newCount);
+      addItemInCart(name, newCount);
     }
   }
 
   function handleClick() {
-    console.log(name); // Log the dessert name to the console
-    setSelectedDessert(name);
+    // console.log(name); // Log the dessert name to the console
     setOpenButton(true);
-    setUnits(1);
+    addItemInCart(name, count);
   }
 
   return openButton ? (
@@ -144,13 +149,18 @@ function AddToCartBtn({ name, setUnits, setSelectedDessert }) {
   );
 }
 
-function Cart({ units, selectedDessert }) {
+function Cart({ itemsInCart }) {
   return (
     <div className="cart">
       <p>Cart</p>
-      <p>
-        {selectedDessert === "" ? "" : units} {selectedDessert}
-      </p>
+      {itemsInCart.map(
+        (item, index) =>
+          item.units > 0 && (
+            <p key={index}>
+              {item.units} {item.selectedDessert}
+            </p>
+          )
+      )}
     </div>
   );
 }
