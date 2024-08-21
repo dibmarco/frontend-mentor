@@ -58,15 +58,23 @@ const desserts = [
 ];
 
 function App() {
+  const [units, setUnits] = useState(1);
+  const [selectedDessert, setSelectedDessert] = useState("");
+
   return (
     <div className="container">
-      <DessertItems desserts={desserts} />
-      <Cart />
+      <DessertItems
+        desserts={desserts}
+        units={units}
+        setUnits={setUnits}
+        setSelectedDessert={setSelectedDessert}
+      />
+      <Cart units={units} selectedDessert={selectedDessert} />
     </div>
   );
 }
 
-function DessertItems({ desserts }) {
+function DessertItems({ desserts, setUnits, setSelectedDessert }) {
   return (
     <div>
       <h1>Desserts</h1>
@@ -74,7 +82,11 @@ function DessertItems({ desserts }) {
         {desserts.map((dessert) => (
           <div className="dessert-item" key={dessert.name}>
             <img src={dessert.img} alt={dessert.name} />
-            <AddToCartBtn name={dessert.name} />
+            <AddToCartBtn
+              name={dessert.name}
+              setUnits={setUnits}
+              setSelectedDessert={setSelectedDessert}
+            />
             <div className="dessert-description-content">
               <p className="dessert-name">{dessert.name}</p>
               <p className="dessert-description">{dessert.description}</p>
@@ -87,26 +99,32 @@ function DessertItems({ desserts }) {
   );
 }
 
-function AddToCartBtn({ name }) {
+function AddToCartBtn({ name, setUnits, setSelectedDessert }) {
   const [openButton, setOpenButton] = useState(false);
   const [count, setCount] = useState(1);
 
   function handlePlus() {
     setCount(() => count + 1);
+    setUnits(() => count + 1);
   }
 
   function handleMinus() {
     if (count <= 1) {
       setCount(1);
       setOpenButton(false);
+      setUnits(count);
+      setSelectedDessert("");
     } else {
       setCount(() => count - 1);
+      setUnits(() => count - 1);
     }
   }
 
   function handleClick() {
     console.log(name); // Log the dessert name to the console
+    setSelectedDessert(name);
     setOpenButton(true);
+    setUnits(1);
   }
 
   return openButton ? (
@@ -126,8 +144,15 @@ function AddToCartBtn({ name }) {
   );
 }
 
-function Cart() {
-  return <div className="cart">Cart</div>;
+function Cart({ units, selectedDessert }) {
+  return (
+    <div className="cart">
+      <p>Cart</p>
+      <p>
+        {selectedDessert === "" ? "" : units} {selectedDessert}
+      </p>
+    </div>
+  );
 }
 
 export default App;
