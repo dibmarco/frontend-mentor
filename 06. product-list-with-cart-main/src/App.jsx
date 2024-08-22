@@ -185,6 +185,9 @@ function AddToCartBtn({ name, price, addItemInCart }) {
 }
 
 function Cart({ itemsInCart }) {
+  // Calculate the grand total
+  const grandTotal = itemsInCart.reduce((acc, item) => acc + item.totalPrice, 0);
+
   return (
     <div className="cart">
       <p>Cart</p>
@@ -193,8 +196,12 @@ function Cart({ itemsInCart }) {
           {item.units} {item.selectedDessert} ${item.totalPrice.toFixed(2)}
         </p>
       ))}
+      <p>
+        Grand Total: ${grandTotal.toFixed(2)}
+      </p>
     </div>
   );
 }
+
 
 export default App;
