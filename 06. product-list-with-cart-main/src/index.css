@@ -102,14 +102,29 @@ body {
   justify-content: center;
   align-items: center;
 
-  width: 1.1rem;
-  height: 1.1rem;
+  width: 1.2rem;
+  height: 1.2rem;
   padding: 0.3rem;
   border: 1px solid rgba(196, 176, 176, 0.5);
   border-radius: 50%;
 }
 
 .cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
+
   width: 30%;
   border: 1px solid black;
+}
+
+.remove-item {
+  cursor: pointer;
+}
+
+.grand-total {
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
 }

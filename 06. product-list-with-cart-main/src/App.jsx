@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const desserts = [
   {
@@ -63,21 +63,18 @@ function App() {
   function addItemInCart(name, price, count) {
     setItemsInCart((prevItems) => {
       if (count === 0) {
-        // Remove the item if count is 0
         return prevItems.filter((item) => item.selectedDessert !== name);
       } else {
         const existingItem = prevItems.find(
           (item) => item.selectedDessert === name
         );
         if (existingItem) {
-          // Update the item count if it exists in the cart
           return prevItems.map((item) =>
             item.selectedDessert === name
               ? { ...item, units: count, totalPrice: price * count }
               : item
           );
         } else {
-          // Add the item to the cart if it doesn't exist yet
           return [
             ...prevItems,
             { selectedDessert: name, units: count, totalPrice: price * count },
@@ -87,14 +84,20 @@ function App() {
     });
   }
 
+  function removeItemInCart(name) {
+    setItemsInCart((prevItems) =>
+      prevItems.filter((item) => item.selectedDessert !== name)
+    );
+  }
+
   return (
     <div className="container">
       <DessertItems
         desserts={desserts}
-        addItemInCart={addItemInCart}
         itemsInCart={itemsInCart}
+        addItemInCart={addItemInCart}
       />
-      <Cart itemsInCart={itemsInCart} />
+      <Cart itemsInCart={itemsInCart} removeItemInCart={removeItemInCart} />
     </div>
   );
 }
@@ -118,6 +121,7 @@ function DessertItems({ desserts, addItemInCart, itemsInCart }) {
                 name={dessert.name}
                 price={dessert.price}
                 addItemInCart={addItemInCart}
+                itemsInCart={itemsInCart} // Pass itemsInCart to AddToCartBtn
               />
               <div className="dessert-description-content">
                 <p className="dessert-name">{dessert.name}</p>
@@ -132,9 +136,21 @@ function DessertItems({ desserts, addItemInCart, itemsInCart }) {
   );
 }
 
-function AddToCartBtn({ name, price, addItemInCart }) {
+function AddToCartBtn({ name, price, addItemInCart, itemsInCart }) {
   const [openButton, setOpenButton] = useState(false);
   const [count, setCount] = useState(1);
+
+  useEffect(() => {
+    // Check if the current item is still in the cart
+    const itemInCart = itemsInCart.find(
+      (item) => item.selectedDessert === name
+    );
+    if (!itemInCart) {
+      // If the item is removed from the cart, reset the button state
+      setOpenButton(false);
+      setCount(1);
+    }
+  }, [itemsInCart, name]);
 
   function handlePlus() {
     const newCount = count + 1;
@@ -184,24 +200,30 @@ function AddToCartBtn({ name, price, addItemInCart }) {
   );
 }
 
-function Cart({ itemsInCart }) {
+function Cart({ itemsInCart, removeItemInCart }) {
   // Calculate the grand total
-  const grandTotal = itemsInCart.reduce((acc, item) => acc + item.totalPrice, 0);
+  const grandTotal = itemsInCart.reduce(
+    (acc, item) => acc + item.totalPrice,
+    0
+  );
 
   return (
     <div className="cart">
       <p>Cart</p>
       {itemsInCart.map((item) => (
         <p key={item.selectedDessert}>
-          {item.units} {item.selectedDessert} ${item.totalPrice.toFixed(2)}
+          {item.units} x {item.selectedDessert} ${item.totalPrice.toFixed(2)}{" "}
+          <span
+            className="remove-item"
+            onClick={() => removeItemInCart(item.selectedDessert)}
+          >
+            ❌
+          </span>
         </p>
       ))}
-      <p>
-        Grand Total: ${grandTotal.toFixed(2)}
-      </p>
+      <p className="grand-total">Grand Total: ${grandTotal.toFixed(2)}</p>
     </div>
   );
 }
-
 
 export default App;
