@@ -52,11 +52,16 @@ body {
 .dessert-item > img {
   width: 80%;
   border-radius: 10px;
+  border: 3px solid antiquewhite;
+}
+
+.dessert-item.in-cart img {
+  border: 3px solid brown;
 }
 
 .dessert-description-content {
   width: 80%;
- /*  border: 1px solid black; */
+  /*  border: 1px solid black; */
 }
 
 .dessert-name {
@@ -83,7 +88,6 @@ body {
   background-color: brown;
   color: black;
 
-
   border-radius: 200px;
   cursor: pointer;
 }
@@ -92,7 +96,8 @@ body {
   gap: 1rem;
 }
 
-.minus-item, .plus-item {
+.minus-item,
+.plus-item {
   display: flex;
   justify-content: center;
   align-items: center;
