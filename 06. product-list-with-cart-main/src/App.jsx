@@ -201,6 +201,12 @@ function AddToCartBtn({ name, price, addItemInCart, itemsInCart }) {
 }
 
 function Cart({ itemsInCart, removeItemInCart }) {
+  // Calculate number of items in cart
+  const totalItemsInCart = itemsInCart.reduce(
+    (acc, item) => acc + item.units,
+    0
+  );
+
   // Calculate the grand total
   const grandTotal = itemsInCart.reduce(
     (acc, item) => acc + item.totalPrice,
@@ -209,7 +215,7 @@ function Cart({ itemsInCart, removeItemInCart }) {
 
   return (
     <div className="cart">
-      <p>Cart</p>
+      <p>Cart ({totalItemsInCart})</p>
       {itemsInCart.map((item) => (
         <p key={item.selectedDessert}>
           {item.units} x {item.selectedDessert} ${item.totalPrice.toFixed(2)}{" "}
