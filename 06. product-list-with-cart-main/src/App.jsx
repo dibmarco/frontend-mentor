@@ -121,7 +121,7 @@ function DessertItems({ desserts, addItemInCart, itemsInCart }) {
                 name={dessert.name}
                 price={dessert.price}
                 addItemInCart={addItemInCart}
-                itemsInCart={itemsInCart} // Pass itemsInCart to AddToCartBtn
+                itemsInCart={itemsInCart}
               />
               <div className="dessert-description-content">
                 <p className="dessert-name">{dessert.name}</p>
