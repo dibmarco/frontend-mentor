@@ -145,6 +145,7 @@ function AddToCartBtn({ name, price, addItemInCart, itemsInCart }) {
     const itemInCart = itemsInCart.find(
       (item) => item.selectedDessert === name
     );
+
     if (!itemInCart) {
       // If the item is removed from the cart, reset the button state
       setOpenButton(false);
