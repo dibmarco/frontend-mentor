@@ -58,19 +58,27 @@ const desserts = [
 ];
 
 function App() {
+  const [openModal, setOpenModal] = useState(false);
+
+  function handleOpenModal() {
+    setOpenModal(!openModal);
+  }
+
   return (
     <>
-      <h1>Desserts</h1>
       <div className="container">
-        <Desserts />
-        <Cart />
-        <Modal />
+        <h1>Desserts</h1>
+        <div className={`container-inner ${openModal ? "blur" : ""}`}>
+          <Desserts openModal={openModal} />
+          <Cart handleOpenModal={handleOpenModal} />
+        </div>
+        <Modal openModal={openModal} handleOpenModal={handleOpenModal} />
       </div>
     </>
   );
 }
 
-function Desserts() {
+function Desserts({ openModal }) {
   return (
     <>
       <div className="desserts-grid">
@@ -89,12 +97,20 @@ function Desserts() {
   );
 }
 
-function Cart() {
-  return <div>Cart</div>;
+function Cart({ handleOpenModal }) {
+  return (
+    <div className="cart">
+      <h2 onClick={handleOpenModal}>Cart</h2>
+    </div>
+  );
 }
 
-function Modal() {
-  return <div>Modal</div>;
+function Modal({ openModal, handleOpenModal }) {
+  return (
+    <div className={`modal ${openModal ? "" : "hidden"}`}>
+      <p onClick={handleOpenModal}>Modal</p>
+    </div>
+  );
 }
 
 export default App;

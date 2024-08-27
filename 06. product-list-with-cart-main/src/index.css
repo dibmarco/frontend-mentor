@@ -10,10 +10,19 @@ body {
 
 .container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   width: 100%;
-
   padding: 0.3rem;
+
+  position: relative;
+}
+
+.container-inner {
+  display: flex;
+  gap: 1rem;
 }
 
 .desserts-grid {
@@ -31,4 +40,41 @@ body {
 
 .dessert-item > img {
   width: 100%;
+}
+
+.cart {
+  width: 250px;
+
+  border: 1px solid black;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+
+  width: 600px;
+  height: 200px;
+  background-color: #000;
+  color: #fff;
+
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.hidden {
+  display: none;
+}
+
+.blur {
+  filter: blur(1px);
+}
+
+/* Provisional classes */
+.cart > h2, .modal > p  {
+  cursor: pointer;
 }
