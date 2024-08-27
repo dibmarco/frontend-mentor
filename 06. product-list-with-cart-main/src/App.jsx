@@ -59,19 +59,10 @@ const desserts = [
 
 function App() {
   const [openModal, setOpenModal] = useState(false);
-  const [count, setCount] = useState(1);
   const [itemsInCart, setItemsInCart] = useState([]);
 
   function handleOpenModal() {
     setOpenModal(!openModal);
-  }
-
-  function plus() {
-    setCount(() => count + 1);
-  }
-
-  function minus() {
-    setCount(() => count - 1);
   }
 
   function addItemToCart(name, quantity) {
@@ -83,16 +74,18 @@ function App() {
       quantity: quantity,
     };
 
-    setItemsInCart((prevItems) => {
-      const existingItem = prevItems.find((item) => item.name === name);
-      if (existingItem) {
-        return prevItems.map((item) =>
-          item.name === name ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      } else {
-        return [...prevItems, item];
-      }
-    });
+    setItemsInCart((prevItems) => [...prevItems, item]);
+
+    // setItemsInCart((prevItems) => {
+    //   const existingItem = prevItems.find((item) => item.name === name);
+    //   if (existingItem) {
+    //     return prevItems.map((item) =>
+    //       item.name === name ? { ...item, quantity: item.quantity + 1 } : item
+    //     );
+    //   } else {
+    //     return [...prevItems, item];
+    //   }
+    // });
   }
 
   return (
@@ -100,14 +93,7 @@ function App() {
       <div className="container">
         <h1>Desserts</h1>
         <div className={`container-inner ${openModal ? "blur" : ""}`}>
-          <Desserts
-            openModal={openModal}
-            count={count}
-            setCount={setCount}
-            plus={plus}
-            minus={minus}
-            addItemToCart={addItemToCart}
-          />
+          <Desserts addItemToCart={addItemToCart} />
           <Cart handleOpenModal={handleOpenModal} itemsInCart={itemsInCart} />
         </div>
         <Modal openModal={openModal} handleOpenModal={handleOpenModal} />
@@ -116,21 +102,14 @@ function App() {
   );
 }
 
-function Desserts({ count, setCount, plus, minus, addItemToCart }) {
+function Desserts({ addItemToCart }) {
   return (
     <>
       <div className="desserts-grid">
         {desserts.map((item) => (
           <div className="dessert-item" key={item.name}>
             <img src={item.img} alt={item.name} />
-            <AddToCart
-              name={item.name}
-              count={count}
-              setCount={setCount}
-              plus={plus}
-              minus={minus}
-              addItemToCart={addItemToCart}
-            />
+            <AddToCart name={item.name} addItemToCart={addItemToCart} />
             <div>
               <p>{item.name}</p>
               <p>{item.description}</p>
@@ -143,8 +122,9 @@ function Desserts({ count, setCount, plus, minus, addItemToCart }) {
   );
 }
 
-function AddToCart({ name, count, setCount, plus, minus, addItemToCart }) {
+function AddToCart({ name, addItemToCart }) {
   const [openButton, setOpenButton] = useState(false);
+  const [count, setCount] = useState(1);
 
   useEffect(() => {
     if (count === 0) {
@@ -153,11 +133,18 @@ function AddToCart({ name, count, setCount, plus, minus, addItemToCart }) {
     }
   }, [count, setCount]);
 
+  function plus() {
+    setCount(() => count + 1);
+  }
+
+  function minus() {
+    setCount(() => count - 1);
+  }
+
   return (
     <div
       className="add-to-cart--btn"
       onClick={() => {
-        console.log(name);
         setOpenButton(true);
         addItemToCart(name, count);
       }}
