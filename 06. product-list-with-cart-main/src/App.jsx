@@ -58,179 +58,43 @@ const desserts = [
 ];
 
 function App() {
-  const [itemsInCart, setItemsInCart] = useState([]);
-
-  function addItemInCart(name, price, count) {
-    setItemsInCart((prevItems) => {
-      if (count === 0) {
-        return prevItems.filter((item) => item.selectedDessert !== name);
-      } else {
-        const existingItem = prevItems.find(
-          (item) => item.selectedDessert === name
-        );
-        if (existingItem) {
-          return prevItems.map((item) =>
-            item.selectedDessert === name
-              ? { ...item, units: count, totalPrice: price * count }
-              : item
-          );
-        } else {
-          return [
-            ...prevItems,
-            { selectedDessert: name, units: count, totalPrice: price * count },
-          ];
-        }
-      }
-    });
-  }
-
-  function removeItemInCart(name) {
-    setItemsInCart((prevItems) =>
-      prevItems.filter((item) => item.selectedDessert !== name)
-    );
-  }
-
   return (
-    <div className="container">
-      <DessertItems
-        desserts={desserts}
-        itemsInCart={itemsInCart}
-        addItemInCart={addItemInCart}
-      />
-      <Cart itemsInCart={itemsInCart} removeItemInCart={removeItemInCart} />
-    </div>
-  );
-}
-
-function DessertItems({ desserts, addItemInCart, itemsInCart }) {
-  return (
-    <div>
+    <>
       <h1>Desserts</h1>
-      <div className="desserts-grid">
-        {desserts.map((dessert) => {
-          const isInCart = itemsInCart.some(
-            (item) => item.selectedDessert === dessert.name
-          );
-          return (
-            <div
-              className={`dessert-item ${isInCart ? "in-cart" : ""}`}
-              key={dessert.name}
-            >
-              <img src={dessert.img} alt={dessert.name} />
-              <AddToCartBtn
-                name={dessert.name}
-                price={dessert.price}
-                addItemInCart={addItemInCart}
-                itemsInCart={itemsInCart}
-              />
-              <div className="dessert-description-content">
-                <p className="dessert-name">{dessert.name}</p>
-                <p className="dessert-description">{dessert.description}</p>
-                <p className="dessert-price">${dessert.price.toFixed(2)}</p>
-              </div>
-            </div>
-          );
-        })}
+      <div className="container">
+        <Desserts />
+        <Cart />
+        <Modal />
       </div>
-    </div>
+    </>
   );
 }
 
-function AddToCartBtn({ name, price, addItemInCart, itemsInCart }) {
-  const [openButton, setOpenButton] = useState(false);
-  const [count, setCount] = useState(1);
-
-  useEffect(() => {
-    // Check if the current item is still in the cart
-    const itemInCart = itemsInCart.find(
-      (item) => item.selectedDessert === name
-    );
-
-    if (!itemInCart) {
-      // If the item is removed from the cart, reset the button state
-      setOpenButton(false);
-      setCount(1);
-    }
-  }, [itemsInCart, name]);
-
-  function handlePlus() {
-    const newCount = count + 1;
-    setCount(newCount);
-    addItemInCart(name, price, newCount);
-  }
-
-  function handleMinus() {
-    if (count <= 1) {
-      setOpenButton(false);
-      addItemInCart(name, price, 0); // Remove from cart if count is 0
-    } else {
-      const newCount = count - 1;
-      setCount(newCount);
-      addItemInCart(name, price, newCount);
-    }
-  }
-
-  function handleClick() {
-    setCount(1); // Reset count to 1
-    setOpenButton(true);
-    addItemInCart(name, price, 1); // Start with a count of 1
-  }
-
-  return openButton ? (
-    <div className="add-to-cart--btn open">
-      <p
-        className="minus-item"
-        onClick={handleMinus}
-        aria-label="Decrease quantity"
-      >
-        -
-      </p>
-      {count}
-      <p
-        className="plus-item"
-        onClick={handlePlus}
-        aria-label="Increase quantity"
-      >
-        +
-      </p>
-    </div>
-  ) : (
-    <div className="add-to-cart--btn" onClick={handleClick}>
-      Add to Cart
-    </div>
-  );
-}
-
-function Cart({ itemsInCart, removeItemInCart }) {
-  // Calculate number of items in cart
-  const totalItemsInCart = itemsInCart.reduce(
-    (acc, item) => acc + item.units,
-    0
-  );
-
-  // Calculate the grand total
-  const grandTotal = itemsInCart.reduce(
-    (acc, item) => acc + item.totalPrice,
-    0
-  );
-
+function Desserts() {
   return (
-    <div className="cart">
-      <p>Cart ({totalItemsInCart})</p>
-      {itemsInCart.map((item) => (
-        <p key={item.selectedDessert}>
-          {item.units} x {item.selectedDessert} ${item.totalPrice.toFixed(2)}{" "}
-          <span
-            className="remove-item"
-            onClick={() => removeItemInCart(item.selectedDessert)}
-          >
-            ❌
-          </span>
-        </p>
-      ))}
-      <p className="grand-total">Grand Total: ${grandTotal.toFixed(2)}</p>
-    </div>
+    <>
+      <div className="desserts-grid">
+        {desserts.map((item) => (
+          <div className="dessert-item" key={item.name}>
+            <img src={item.img} alt={item.name} />
+            <div>
+              <p>{item.name}</p>
+              <p>{item.description}</p>
+              <p>{item.price.toFixed(2)}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
   );
+}
+
+function Cart() {
+  return <div>Cart</div>;
+}
+
+function Modal() {
+  return <div>Modal</div>;
 }
 
 export default App;
