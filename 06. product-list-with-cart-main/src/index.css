@@ -48,6 +48,31 @@ body {
   border: 1px solid black;
 }
 
+.add-to-cart--btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 150px;
+  height: 30px;
+  background-color: brown;
+
+  border-radius: 200px;
+  cursor: pointer;
+}
+
+.selections {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+
+  /* width: 150px;
+  height: 30px;
+
+  background-color: antiquewhite; */
+}
+
 .modal {
   display: flex;
   flex-direction: column;

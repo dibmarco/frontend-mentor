@@ -59,9 +59,40 @@ const desserts = [
 
 function App() {
   const [openModal, setOpenModal] = useState(false);
+  const [count, setCount] = useState(1);
+  const [itemsInCart, setItemsInCart] = useState([]);
 
   function handleOpenModal() {
     setOpenModal(!openModal);
+  }
+
+  function plus() {
+    setCount(() => count + 1);
+  }
+
+  function minus() {
+    setCount(() => count - 1);
+  }
+
+  function addItemToCart(name, quantity) {
+    const id = crypto.randomUUID();
+
+    const item = {
+      id: id,
+      name: name,
+      quantity: quantity,
+    };
+
+    setItemsInCart((prevItems) => {
+      const existingItem = prevItems.find((item) => item.name === name);
+      if (existingItem) {
+        return prevItems.map((item) =>
+          item.name === name ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      } else {
+        return [...prevItems, item];
+      }
+    });
   }
 
   return (
@@ -69,8 +100,15 @@ function App() {
       <div className="container">
         <h1>Desserts</h1>
         <div className={`container-inner ${openModal ? "blur" : ""}`}>
-          <Desserts openModal={openModal} />
-          <Cart handleOpenModal={handleOpenModal} />
+          <Desserts
+            openModal={openModal}
+            count={count}
+            setCount={setCount}
+            plus={plus}
+            minus={minus}
+            addItemToCart={addItemToCart}
+          />
+          <Cart handleOpenModal={handleOpenModal} itemsInCart={itemsInCart} />
         </div>
         <Modal openModal={openModal} handleOpenModal={handleOpenModal} />
       </div>
@@ -78,13 +116,21 @@ function App() {
   );
 }
 
-function Desserts({ openModal }) {
+function Desserts({ count, setCount, plus, minus, addItemToCart }) {
   return (
     <>
       <div className="desserts-grid">
         {desserts.map((item) => (
           <div className="dessert-item" key={item.name}>
             <img src={item.img} alt={item.name} />
+            <AddToCart
+              name={item.name}
+              count={count}
+              setCount={setCount}
+              plus={plus}
+              minus={minus}
+              addItemToCart={addItemToCart}
+            />
             <div>
               <p>{item.name}</p>
               <p>{item.description}</p>
@@ -97,10 +143,50 @@ function Desserts({ openModal }) {
   );
 }
 
-function Cart({ handleOpenModal }) {
+function AddToCart({ name, count, setCount, plus, minus, addItemToCart }) {
+  const [openButton, setOpenButton] = useState(false);
+
+  useEffect(() => {
+    if (count === 0) {
+      setOpenButton(false);
+      setCount(1);
+    }
+  }, [count, setCount]);
+
+  return (
+    <div
+      className="add-to-cart--btn"
+      onClick={() => {
+        console.log(name);
+        setOpenButton(true);
+        addItemToCart(name, count);
+      }}
+    >
+      {openButton ? (
+        <div className="selections">
+          <p onClick={minus}>-</p>
+          {count}
+          <p onClick={plus}>+</p>
+        </div>
+      ) : (
+        <div>Add to Cart</div>
+      )}
+    </div>
+  );
+}
+
+function Cart({ handleOpenModal, itemsInCart }) {
   return (
     <div className="cart">
       <h2 onClick={handleOpenModal}>Cart</h2>
+      <div>
+        {itemsInCart.map((item) => (
+          <p>
+            <span>{item.quantity}</span>
+            <span>{item.name}</span>
+          </p>
+        ))}
+      </div>
     </div>
   );
 }
