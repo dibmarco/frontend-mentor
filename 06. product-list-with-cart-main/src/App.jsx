@@ -66,26 +66,12 @@ function App() {
   }
 
   function addItemToCart(name, quantity) {
-    const id = crypto.randomUUID();
-
     const item = {
-      id: id,
       name: name,
       quantity: quantity,
     };
 
     setItemsInCart((prevItems) => [...prevItems, item]);
-
-    // setItemsInCart((prevItems) => {
-    //   const existingItem = prevItems.find((item) => item.name === name);
-    //   if (existingItem) {
-    //     return prevItems.map((item) =>
-    //       item.name === name ? { ...item, quantity: item.quantity + 1 } : item
-    //     );
-    //   } else {
-    //     return [...prevItems, item];
-    //   }
-    // });
   }
 
   return (
@@ -131,7 +117,12 @@ function AddToCart({ name, addItemToCart }) {
       setOpenButton(false);
       setCount(1);
     }
-  }, [count, setCount]);
+  }, [count]);
+
+  function click() {
+    setOpenButton(true);
+    addItemToCart(name, count);
+  }
 
   function plus() {
     setCount(() => count + 1);
@@ -142,21 +133,17 @@ function AddToCart({ name, addItemToCart }) {
   }
 
   return (
-    <div
-      className="add-to-cart--btn"
-      onClick={() => {
-        setOpenButton(true);
-        addItemToCart(name, count);
-      }}
-    >
+    <div>
       {openButton ? (
-        <div className="selections">
+        <div className="add-to-cart--btn selections">
           <p onClick={minus}>-</p>
           {count}
           <p onClick={plus}>+</p>
         </div>
       ) : (
-        <div>Add to Cart</div>
+        <div className="add-to-cart--btn" onClick={click}>
+          Add to Cart
+        </div>
       )}
     </div>
   );
@@ -166,14 +153,6 @@ function Cart({ handleOpenModal, itemsInCart }) {
   return (
     <div className="cart">
       <h2 onClick={handleOpenModal}>Cart</h2>
-      <div>
-        {itemsInCart.map((item) => (
-          <p>
-            <span>{item.quantity}</span>
-            <span>{item.name}</span>
-          </p>
-        ))}
-      </div>
     </div>
   );
 }
