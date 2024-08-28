@@ -170,6 +170,13 @@ function Cart({ handleOpenModal, itemsInCart }) {
   return (
     <div className="cart">
       <h2 onClick={handleOpenModal}>Cart</h2>
+      <div>
+        {itemsInCart.map((item) => (
+          <div>
+            <span>{item.quantity}</span> x <span>{item.name}</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
