@@ -71,7 +71,20 @@ function App() {
       quantity: quantity,
     };
 
-    setItemsInCart((prevItems) => [...prevItems, item]);
+    setItemsInCart((prevItems) => {
+      if (quantity === 0) {
+        return prevItems.filter((item) => item.name !== name);
+      } else {
+        const existingItem = prevItems.find((item) => item.name === name);
+        if (existingItem) {
+          return prevItems.map((item) =>
+            item.name === name ? { ...item, quantity: quantity } : item
+          );
+        } else {
+          return [...prevItems, item];
+        }
+      }
+    });
   }
 
   return (
@@ -125,11 +138,15 @@ function AddToCart({ name, addItemToCart }) {
   }
 
   function plus() {
-    setCount(() => count + 1);
+    const newCount = count + 1;
+    setCount(newCount);
+    addItemToCart(name, newCount);
   }
 
   function minus() {
-    setCount(() => count - 1);
+    const newCount = count - 1;
+    setCount(newCount);
+    addItemToCart(name, newCount);
   }
 
   return (
