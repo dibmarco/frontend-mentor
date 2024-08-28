@@ -65,10 +65,11 @@ function App() {
     setOpenModal(!openModal);
   }
 
-  function addItemToCart(name, quantity) {
+  function addItemToCart(name, quantity, price) {
     const item = {
       name: name,
       quantity: quantity,
+      price: price,
     };
 
     setItemsInCart((prevItems) => {
@@ -78,7 +79,9 @@ function App() {
         const existingItem = prevItems.find((item) => item.name === name);
         if (existingItem) {
           return prevItems.map((item) =>
-            item.name === name ? { ...item, quantity: quantity } : item
+            item.name === name
+              ? { ...item, quantity: quantity, price: quantity * price }
+              : item
           );
         } else {
           return [...prevItems, item];
@@ -92,8 +95,8 @@ function App() {
       <div className="container">
         <h1>Desserts</h1>
         <div className={`container-inner ${openModal ? "blur" : ""}`}>
-          <Desserts addItemToCart={addItemToCart} />
-          <Cart handleOpenModal={handleOpenModal} itemsInCart={itemsInCart} />
+          <Desserts itemsInCart={itemsInCart} addItemToCart={addItemToCart} />
+          <Cart itemsInCart={itemsInCart} handleOpenModal={handleOpenModal} />
         </div>
         <Modal openModal={openModal} handleOpenModal={handleOpenModal} />
       </div>
@@ -101,27 +104,40 @@ function App() {
   );
 }
 
-function Desserts({ addItemToCart }) {
+function Desserts({ itemsInCart, addItemToCart }) {
   return (
     <>
       <div className="desserts-grid">
-        {desserts.map((item) => (
-          <div className="dessert-item" key={item.name}>
-            <img src={item.img} alt={item.name} />
-            <AddToCart name={item.name} addItemToCart={addItemToCart} />
-            <div>
-              <p>{item.name}</p>
-              <p>{item.description}</p>
-              <p>{item.price.toFixed(2)}</p>
+        {desserts.map((item) => {
+          const isInCart = itemsInCart.some(
+            (itemInCart) => itemInCart.name === item.name
+          );
+          return (
+            <div className="dessert-item" key={item.name}>
+              <img
+                src={item.img}
+                alt={item.name}
+                className={`dessert-image ${isInCart ? "in-cart" : ""}`}
+              />
+              <AddToCart
+                name={item.name}
+                price={item.price}
+                addItemToCart={addItemToCart}
+              />
+              <div>
+                <p>{item.name}</p>
+                <p>{item.description}</p>
+                <p>{item.price.toFixed(2)}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </>
   );
 }
 
-function AddToCart({ name, addItemToCart }) {
+function AddToCart({ name, price, addItemToCart }) {
   const [openButton, setOpenButton] = useState(false);
   const [count, setCount] = useState(1);
 
@@ -134,19 +150,19 @@ function AddToCart({ name, addItemToCart }) {
 
   function click() {
     setOpenButton(true);
-    addItemToCart(name, count);
+    addItemToCart(name, count, price);
   }
 
   function plus() {
     const newCount = count + 1;
     setCount(newCount);
-    addItemToCart(name, newCount);
+    addItemToCart(name, newCount, price);
   }
 
   function minus() {
     const newCount = count - 1;
     setCount(newCount);
-    addItemToCart(name, newCount);
+    addItemToCart(name, newCount, price);
   }
 
   return (
@@ -167,16 +183,25 @@ function AddToCart({ name, addItemToCart }) {
 }
 
 function Cart({ handleOpenModal, itemsInCart }) {
+  const totalItemsInCart = itemsInCart.reduce(
+    (acc, item) => acc + item.quantity,
+    0
+  );
+
+  const grandTotal = itemsInCart.reduce((acc, item) => acc + item.price, 0);
+
   return (
     <div className="cart">
-      <h2 onClick={handleOpenModal}>Cart</h2>
+      <h2 onClick={handleOpenModal}>Cart ({totalItemsInCart})</h2>
       <div>
         {itemsInCart.map((item) => (
           <div>
-            <span>{item.quantity}</span> x <span>{item.name}</span>
+            <span>{item.quantity}</span> x <span>{item.name}</span>{" "}
+            <span>${item.price.toFixed(2)}</span>
           </div>
         ))}
       </div>
+      <div className="grand-total">Grand Total: ${grandTotal.toFixed(2)}</div>
     </div>
   );
 }

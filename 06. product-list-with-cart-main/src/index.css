@@ -38,8 +38,10 @@ body {
   justify-self: center;
 }
 
-.dessert-item > img {
+.dessert-image {
+  display: block;
   width: 100%;
+  border: 3px solid #fff;
 }
 
 .cart {
@@ -73,6 +75,13 @@ body {
   background-color: antiquewhite; */
 }
 
+.grand-total {
+  margin-top: 1rem;
+  
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
 .modal {
   display: flex;
   flex-direction: column;
@@ -89,6 +98,12 @@ body {
   top: 5%;
   left: 50%;
   transform: translate(-50%, 50%);
+}
+
+/* HELPER CLASSES */
+
+.in-cart {
+  border: 3px solid brown;
 }
 
 .hidden {
