@@ -15,7 +15,7 @@ body {
   justify-content: center;
 
   width: 100%;
-  padding: 0.3rem;
+  padding: 1rem;
 
   position: relative;
 }
@@ -30,7 +30,11 @@ body {
   grid-template-columns: repeat(3, 1fr);
   gap: 0.5rem;
 
-  width: 800px;
+  width: 530px;
+}
+
+.title {
+  grid-column: 1 / -1;
 }
 
 .dessert-item {
@@ -55,8 +59,8 @@ body {
   align-items: center;
   justify-content: center;
 
-  width: 150px;
-  height: 30px;
+  width: 130px;
+  height: 25px;
   background-color: brown;
 
   border-radius: 200px;

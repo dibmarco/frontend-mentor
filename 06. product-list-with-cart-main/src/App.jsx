@@ -93,7 +93,7 @@ function App() {
   return (
     <>
       <div className="container">
-        <h1>Desserts</h1>
+        {/* <h1>Desserts</h1> */}
         <div className={`container-inner ${openModal ? "blur" : ""}`}>
           <Desserts itemsInCart={itemsInCart} addItemToCart={addItemToCart} />
           <Cart itemsInCart={itemsInCart} handleOpenModal={handleOpenModal} />
@@ -108,6 +108,7 @@ function Desserts({ itemsInCart, addItemToCart }) {
   return (
     <>
       <div className="desserts-grid">
+        <h1 className="title">Desserts</h1>
         {desserts.map((item) => {
           const isInCart = itemsInCart.some(
             (itemInCart) => itemInCart.name === item.name
@@ -127,7 +128,7 @@ function Desserts({ itemsInCart, addItemToCart }) {
               <div>
                 <p>{item.name}</p>
                 <p>{item.description}</p>
-                <p>{item.price.toFixed(2)}</p>
+                <p>${item.price.toFixed(2)}</p>
               </div>
             </div>
           );
@@ -166,7 +167,7 @@ function AddToCart({ name, price, addItemToCart }) {
   }
 
   return (
-    <div>
+    <>
       {openButton ? (
         <div className="add-to-cart--btn selections">
           <p onClick={minus}>-</p>
@@ -178,7 +179,7 @@ function AddToCart({ name, price, addItemToCart }) {
           Add to Cart
         </div>
       )}
-    </div>
+    </>
   );
 }
 
