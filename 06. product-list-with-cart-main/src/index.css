@@ -48,12 +48,6 @@ body {
   border: 3px solid #fff;
 }
 
-.cart {
-  width: 250px;
-
-  border: 1px solid black;
-}
-
 .add-to-cart--btn {
   display: flex;
   align-items: center;
@@ -77,6 +71,15 @@ body {
   height: 30px;
 
   background-color: antiquewhite; */
+}
+
+.cart {
+  width: 250px;
+  border: 1px solid black;
+}
+
+.remove-item {
+  cursor: pointer;
 }
 
 .grand-total {

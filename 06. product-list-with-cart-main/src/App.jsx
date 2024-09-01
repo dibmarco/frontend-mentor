@@ -90,13 +90,23 @@ function App() {
     });
   }
 
+  function removeItemFromCart(name) {
+    setItemsInCart((prevItems) =>
+      prevItems.filter((item) => item.name !== name)
+    );
+  }
+
   return (
     <>
       <div className="container">
         {/* <h1>Desserts</h1> */}
         <div className={`container-inner ${openModal ? "blur" : ""}`}>
           <Desserts itemsInCart={itemsInCart} addItemToCart={addItemToCart} />
-          <Cart itemsInCart={itemsInCart} handleOpenModal={handleOpenModal} />
+          <Cart
+            itemsInCart={itemsInCart}
+            handleOpenModal={handleOpenModal}
+            removeItemFromCart={removeItemFromCart}
+          />
         </div>
         <Modal openModal={openModal} handleOpenModal={handleOpenModal} />
       </div>
@@ -121,6 +131,7 @@ function Desserts({ itemsInCart, addItemToCart }) {
                 className={`dessert-image ${isInCart ? "in-cart" : ""}`}
               />
               <AddToCart
+                itemsInCart={itemsInCart}
                 name={item.name}
                 price={item.price}
                 addItemToCart={addItemToCart}
@@ -138,9 +149,18 @@ function Desserts({ itemsInCart, addItemToCart }) {
   );
 }
 
-function AddToCart({ name, price, addItemToCart }) {
+function AddToCart({ itemsInCart, name, price, addItemToCart }) {
   const [openButton, setOpenButton] = useState(false);
   const [count, setCount] = useState(1);
+
+  useEffect(() => {
+    const itemInCart = itemsInCart.find((item) => item.name === name);
+
+    if (!itemInCart) {
+      setOpenButton(false);
+      setCount(1);
+    }
+  }, [itemsInCart, name]);
 
   useEffect(() => {
     if (count === 0) {
@@ -183,7 +203,7 @@ function AddToCart({ name, price, addItemToCart }) {
   );
 }
 
-function Cart({ handleOpenModal, itemsInCart }) {
+function Cart({ handleOpenModal, itemsInCart, removeItemFromCart }) {
   const totalItemsInCart = itemsInCart.reduce(
     (acc, item) => acc + item.quantity,
     0
@@ -198,7 +218,13 @@ function Cart({ handleOpenModal, itemsInCart }) {
         {itemsInCart.map((item) => (
           <div>
             <span>{item.quantity}</span> x <span>{item.name}</span>{" "}
-            <span>${item.price.toFixed(2)}</span>
+            <span>${item.price.toFixed(2)}</span>{" "}
+            <span
+              className="remove-item"
+              onClick={() => removeItemFromCart(item.name)}
+            >
+              &times;
+            </span>
           </div>
         ))}
       </div>
