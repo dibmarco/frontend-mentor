@@ -84,7 +84,7 @@ function App() {
               : item
           );
         } else {
-          return [...prevItems, item];
+          return [item, ...prevItems];
         }
       }
     });
