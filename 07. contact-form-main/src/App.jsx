@@ -14,15 +14,15 @@ function App() {
   }
 
   return (
-    <div className=" w-[360px] sm:w-[450px] mx-auto my-3">
+    <div className=" w-[360px] sm:w-[450px] mx-auto my-5">
       <form
-        className="flex flex-col gap-1"
+        className="flex flex-col gap-1 p-5 shadow-lg border-2 rounded-md"
         onSubmit={handleSubmit(formSubmit, formError)}
       >
-        <h1 className="text-xl font-bold">Contact Us</h1>
+        <h1 className="text-2xl font-bold text-center uppercase">Contact us</h1>
 
-        <label htmlFor="fname">
-          First name <span>&#42;</span>
+        <label htmlFor="fname" className="font-bold">
+          First name <span className="text-red-500">&#42;</span>
         </label>
         <input
           className="border-2 border-slate-300 pl-1"
@@ -38,8 +38,8 @@ function App() {
           <p className="text-red-500">⚠️{errors.firstName.message}</p>
         )}
 
-        <label htmlFor="lname" className="mt-1">
-          Last name <span>&#42;</span>
+        <label htmlFor="lname" className="mt-1 font-bold">
+          Last name <span className="text-red-500">&#42;</span>
         </label>
         <input
           className="border-2 border-slate-300 pl-1"
@@ -55,8 +55,8 @@ function App() {
           <p className="text-red-500">⚠️{errors.lastName.message}</p>
         )}
 
-        <label htmlFor="email" className="mt-1">
-          Email <span>&#42;</span>
+        <label htmlFor="email" className="mt-1 font-bold">
+          Email <span className="text-red-500">&#42;</span>
         </label>
         <input
           className="border-2 border-slate-300 pl-1"
@@ -72,8 +72,8 @@ function App() {
           <p className="text-red-500">⚠️{errors.email.message}</p>
         )}
 
-        <p className="mt-1">
-          Query type <span>&#42;</span>
+        <p className="mt-1 font-bold">
+          Query type <span className="text-red-500">&#42;</span>
         </p>
 
         <div className="flex gap-3">
@@ -111,8 +111,8 @@ function App() {
           <p className="text-red-500">⚠️{errors.queryType.message}</p>
         )}
 
-        <label htmlFor="message" className="mt-1">
-          Message <span>&#42;</span>
+        <label htmlFor="message" className="mt-1 font-bold">
+          Message <span className="text-red-500">&#42;</span>
         </label>
         <textarea
           className="border-2 border-slate-300 p-1"
@@ -141,14 +141,15 @@ function App() {
           />
           <label htmlFor="consent">
             {" "}
-            I consent to being contacted by the team <span>&#42;</span>
+            I consent to being contacted by the team{" "}
+            <span className="text-red-500 font-bold">&#42;</span>
           </label>
         </div>
         {errors?.consent?.message && (
           <p className="text-red-500">⚠️{errors.consent.message}</p>
         )}
 
-        <button className="bg-slate-300 mt-2 p-1 hover:bg-slate-400">
+        <button className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-md shadow-md transition hover:bg-blue-600 hover:shadow-lg">
           Submit
         </button>
       </form>
