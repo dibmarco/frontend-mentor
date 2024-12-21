@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.custom-radio {
+/* .custom-radio {
   margin-top: 6px;
   appearance: none;
   width: 13px;
@@ -18,4 +18,4 @@
 .custom-radio:checked {
   background-color: #3b82f6;
   border-color: #d1d5db;
-}
+} */

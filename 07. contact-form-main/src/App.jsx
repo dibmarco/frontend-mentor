@@ -1,8 +1,24 @@
+import { useForm } from "react-hook-form";
+
 function App() {
+  const { register, handleSubmit } = useForm();
+
+  function formSubmit(data) {
+    console.log(data);
+  }
+
+  function formError(errors) {
+    console.log(errors);
+  }
+
   return (
-    <div className="p-2">
-      <h1 className="text-xl font-bold">Contact Us</h1>
-      <form className="flex flex-col">
+    <div className=" w-[360px] sm:w-[450px] mx-auto my-3">
+      <form
+        className="flex flex-col gap-1"
+        onSubmit={handleSubmit(formSubmit, formError)}
+      >
+        <h1 className="text-xl font-bold">Contact Us</h1>
+
         <label htmlFor="fname">
           First name <span>&#42;</span>
         </label>
@@ -12,9 +28,12 @@ function App() {
           id="fname"
           name="fname"
           aria-label="First name"
+          {...register("firstName", {
+            required: "This field is required!",
+          })}
         />
 
-        <label htmlFor="lname">
+        <label htmlFor="lname" className="mt-1">
           Last name <span>&#42;</span>
         </label>
         <input
@@ -23,9 +42,12 @@ function App() {
           id="lname"
           name="lname"
           aria-label="Last name"
+          {...register("lastName", {
+            required: "This field is required!",
+          })}
         />
 
-        <label htmlFor="email">
+        <label htmlFor="email" className="mt-1">
           Email <span>&#42;</span>
         </label>
         <input
@@ -34,9 +56,12 @@ function App() {
           id="email"
           name="email"
           aria-label="Email"
+          {...register("email", {
+            required: "This field is required!",
+          })}
         />
 
-        <p>
+        <p className="mt-1">
           Query type <span>&#42;</span>
         </p>
 
@@ -46,8 +71,12 @@ function App() {
               className="custom-radio"
               type="radio"
               id="general"
+              value="general"
               name="query_type"
               aria-label="General Enquiry"
+              {...register("query_type", {
+                required: "Please select your query type!",
+              })}
             />
             <label htmlFor="general">General Enquiry</label>
           </div>
@@ -57,24 +86,51 @@ function App() {
               className="custom-radio"
               type="radio"
               id="support"
+              value="support"
               name="query_type"
               aria-label="Support Request"
+              {...register("query_type", {
+                required: "Please select your query type!",
+              })}
             />
             <label htmlFor="support">Support Request</label>
           </div>
         </div>
 
-        <label htmlFor="message">
+        <label htmlFor="message" className="mt-1">
           Message <span>&#42;</span>
         </label>
         <textarea
-          className="border-2 border-slate-300 p-1  "
+          className="border-2 border-slate-300 p-1"
           name="message"
           id="message"
           cols="45"
           rows="8"
           aria-label="Message"
+          {...register("message", {
+            required: "This field is required!",
+          })}
         ></textarea>
+
+        <div className="flex gap-1 my-2">
+          <input
+            type="checkbox"
+            id="consent"
+            name="consent"
+            aria-label="Consent"
+            {...register("consent", {
+              required: "This selection is required!",
+            })}
+          />
+          <label htmlFor="consent">
+            {" "}
+            I consent to being contacted by the team <span>&#42;</span>
+          </label>
+        </div>
+
+        <button className="bg-slate-300 mt-2 p-1 hover:bg-slate-400">
+          Submit
+        </button>
       </form>
     </div>
   );
