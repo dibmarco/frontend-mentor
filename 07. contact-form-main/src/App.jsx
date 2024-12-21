@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form";
 
 function App() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState } = useForm();
+  const { errors } = formState;
 
   function formSubmit(data) {
     console.log(data);
@@ -32,6 +33,9 @@ function App() {
             required: "This field is required!",
           })}
         />
+        {errors?.firstName?.message && (
+          <p className="text-red-500">⚠️{errors.firstName.message}</p>
+        )}
 
         <label htmlFor="lname" className="mt-1">
           Last name <span>&#42;</span>
@@ -46,6 +50,9 @@ function App() {
             required: "This field is required!",
           })}
         />
+        {errors?.lastName?.message && (
+          <p className="text-red-500">⚠️{errors.lastName.message}</p>
+        )}
 
         <label htmlFor="email" className="mt-1">
           Email <span>&#42;</span>
@@ -60,6 +67,9 @@ function App() {
             required: "This field is required!",
           })}
         />
+        {errors?.email?.message && (
+          <p className="text-red-500">⚠️{errors.email.message}</p>
+        )}
 
         <p className="mt-1">
           Query type <span>&#42;</span>
@@ -89,13 +99,16 @@ function App() {
               value="support"
               name="query_type"
               aria-label="Support Request"
-              {...register("query_type", {
-                required: "Please select your query type!",
+              {...register("queryType", {
+                required: "Please select a query type!",
               })}
             />
             <label htmlFor="support">Support Request</label>
           </div>
         </div>
+        {errors?.queryType?.message && (
+          <p className="text-red-500">⚠️{errors.queryType.message}</p>
+        )}
 
         <label htmlFor="message" className="mt-1">
           Message <span>&#42;</span>
@@ -111,6 +124,9 @@ function App() {
             required: "This field is required!",
           })}
         ></textarea>
+        {errors?.message?.message && (
+          <p className="text-red-500">⚠️{errors.message.message}</p>
+        )}
 
         <div className="flex gap-1 my-2">
           <input
@@ -127,6 +143,9 @@ function App() {
             I consent to being contacted by the team <span>&#42;</span>
           </label>
         </div>
+        {errors?.consent?.message && (
+          <p className="text-red-500">⚠️{errors.consent.message}</p>
+        )}
 
         <button className="bg-slate-300 mt-2 p-1 hover:bg-slate-400">
           Submit
