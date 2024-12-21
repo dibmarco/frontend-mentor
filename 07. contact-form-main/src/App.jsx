@@ -1,11 +1,12 @@
 import { useForm } from "react-hook-form";
 
 function App() {
-  const { register, handleSubmit, formState } = useForm();
+  const { register, handleSubmit, reset, formState } = useForm();
   const { errors } = formState;
 
   function formSubmit(data) {
     console.log(data);
+    reset();
   }
 
   function formError(errors) {
@@ -82,9 +83,9 @@ function App() {
               type="radio"
               id="general"
               value="general"
-              name="query_type"
+              name="queryType"
               aria-label="General Enquiry"
-              {...register("query_type", {
+              {...register("queryType", {
                 required: "Please select your query type!",
               })}
             />
@@ -97,7 +98,7 @@ function App() {
               type="radio"
               id="support"
               value="support"
-              name="query_type"
+              name="queryType"
               aria-label="Support Request"
               {...register("queryType", {
                 required: "Please select a query type!",
