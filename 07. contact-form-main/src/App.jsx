@@ -49,7 +49,7 @@ function App() {
         <input
           className={`border-2 pl-1 rounded-md focus:outline-none transition-all ${
             errors.firstName
-              ? "border-red-500 focus:border-red-500"
+              ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-300"
               : "border-slate-400 focus:border-blue-500 focus:ring-2"
           }`}
           type="text"
@@ -70,7 +70,7 @@ function App() {
         <input
           className={`border-2 pl-1 rounded-md focus:outline-none transition-all ${
             errors.lastName
-              ? "border-red-500 focus:border-red-500"
+              ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-300"
               : "border-slate-400 focus:border-blue-500 focus:ring-2"
           }`}
           type="text"
@@ -92,8 +92,8 @@ function App() {
           className={`border-2 pl-1 rounded-md focus:outline-none transition-all ${
             errors?.email
               ? errors.email?.type === "pattern"
-                ? "border-orange-400 focus:border-orange-400" // Orange border for pattern errors
-                : "border-red-500 focus:border-red-500" // Red border for required errors
+                ? "border-orange-400 focus:border-orange-400 focus:ring-2 focus:ring-red-300" // Orange border for pattern errors
+                : "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-300" // Red border for required errors
               : "border-slate-400 focus:border-blue-500 focus:ring-2"
           }`}
           type="email"
@@ -127,7 +127,7 @@ function App() {
           <div
             className={`flex gap-2 border-2 px-3 py-1 rounded-md transition-all ${
               errors.queryType
-                ? "border-red-500"
+                ? "border-red-500 hover:ring-2 hover:ring-red-300"
                 : "border-slate-400 hover:ring-2 hover:border-blue-500"
             } ${queryType === "general" ? "bg-slate-200" : ""}`}
           >
@@ -148,7 +148,7 @@ function App() {
           <div
             className={`flex gap-2 border-2 px-3 py-1 rounded-md transition-all ${
               errors.queryType
-                ? "border-red-500"
+                ? "border-red-500 hover:ring-2 hover:ring-red-300"
                 : "border-slate-400 hover:ring-2 hover:border-blue-500"
             } ${
               queryType === "support" ? "bg-slate-200" : "" // Add bg color if selected
@@ -178,7 +178,7 @@ function App() {
         <textarea
           className={`border-2 pl-1 rounded-md focus:outline-none transition-all ${
             errors.message
-              ? "border-red-500 focus:border-red-500"
+              ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-300"
               : "border-slate-400 focus:border-blue-500 focus:ring-2"
           }`}
           name="message"
