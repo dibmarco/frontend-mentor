@@ -18,9 +18,9 @@ function App() {
   }
 
   return (
-    <div className="flex justify-center items-center h-[95dvh] w-auto sm:w-[480px] mx-auto my-2">
+    <div className="flex justify-center items-center mx-auto h-screen">
       <form
-        className="flex flex-col gap-1 p-5 shadow-lg border-2 rounded-md"
+        className="flex flex-col gap-1 p-5 shadow-lg border-2 rounded-md w-auto sm:w-[500px]"
         onSubmit={handleSubmit(formSubmit, formError)}
       >
         <h1 className="text-2xl font-bold text-center uppercase">Contact us</h1>
@@ -32,7 +32,7 @@ function App() {
           className={`border-2 pl-1 rounded-md focus:outline-none ${
             errors.firstName
               ? "border-red-500 focus:border-red-500"
-              : "border-slate-400 focus:border-blue-500 focus:ring-1"
+              : "border-slate-400 focus:border-blue-500 focus:ring-2"
           }`}
           type="text"
           id="fname"
@@ -53,7 +53,7 @@ function App() {
           className={`border-2 pl-1 rounded-md focus:outline-none ${
             errors.lastName
               ? "border-red-500 focus:border-red-500"
-              : "border-slate-400 focus:border-blue-500 focus:ring-1"
+              : "border-slate-400 focus:border-blue-500 focus:ring-2"
           }`}
           type="text"
           id="lname"
@@ -74,7 +74,7 @@ function App() {
           className={`border-2 pl-1 rounded-md focus:outline-none ${
             errors.email
               ? "border-red-500 focus:border-red-500"
-              : "border-slate-400 focus:border-blue-500 focus:ring-1"
+              : "border-slate-400 focus:border-blue-500 focus:ring-2"
           }`}
           type="email"
           id="email"
@@ -146,7 +146,7 @@ function App() {
           className={`border-2 pl-1 rounded-md focus:outline-none ${
             errors.message
               ? "border-red-500 focus:border-red-500"
-              : "border-slate-400 focus:border-blue-500 focus:ring-1"
+              : "border-slate-400 focus:border-blue-500 focus:ring-2"
           }`}
           name="message"
           id="message"
@@ -161,7 +161,7 @@ function App() {
           <p className="text-red-500">⚠️{errors.message.message}</p>
         )} */}
 
-        <div>
+        <div className="mt-1">
           <input
             type="checkbox"
             id="consent"
@@ -184,7 +184,7 @@ function App() {
           <p className="text-red-500">⚠️{errors.consent.message}</p>
         )} */}
 
-        <button className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-md shadow-md transition hover:bg-blue-600 hover:shadow-lg">
+        <button className="bg-blue-500 text-white font-semibold py-2 px-4 mt-2 rounded-md shadow-md transition hover:bg-blue-600 hover:shadow-lg">
           Submit
         </button>
       </form>
