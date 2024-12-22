@@ -6,6 +6,7 @@ function App() {
 
   function formSubmit(data) {
     console.log(data);
+    alert("Form successfully submited!");
     reset();
   }
 
@@ -25,7 +26,11 @@ function App() {
           First name <span className="text-red-500">&#42;</span>
         </label>
         <input
-          className="border-2 border-slate-300 pl-1"
+          className={`border-2 pl-1 rounded-md focus:outline-none ${
+            errors.firstName
+              ? "border-red-500 focus:border-red-500"
+              : "border-slate-300 focus:border-blue-500"
+          }`}
           type="text"
           id="fname"
           name="fname"
@@ -34,15 +39,19 @@ function App() {
             required: "This field is required!",
           })}
         />
-        {errors?.firstName?.message && (
-          <p className="text-red-500">⚠️{errors.firstName.message}</p>
-        )}
+        {/* {errors.firstName && (
+          <p className="text-red-500">⚠️ {errors.firstName.message}</p>
+        )} */}
 
         <label htmlFor="lname" className="mt-1 font-bold">
           Last name <span className="text-red-500">&#42;</span>
         </label>
         <input
-          className="border-2 border-slate-300 pl-1"
+          className={`border-2 pl-1 rounded-md focus:outline-none ${
+            errors.lastName
+              ? "border-red-500 focus:border-red-500"
+              : "border-slate-300 focus:border-blue-500"
+          }`}
           type="text"
           id="lname"
           name="lname"
@@ -51,15 +60,19 @@ function App() {
             required: "This field is required!",
           })}
         />
-        {errors?.lastName?.message && (
+        {/* {errors?.lastName?.message && (
           <p className="text-red-500">⚠️{errors.lastName.message}</p>
-        )}
+        )} */}
 
         <label htmlFor="email" className="mt-1 font-bold">
           Email <span className="text-red-500">&#42;</span>
         </label>
         <input
-          className="border-2 border-slate-300 pl-1"
+          className={`border-2 pl-1 rounded-md focus:outline-none ${
+            errors.email
+              ? "border-red-500 focus:border-red-500"
+              : "border-slate-300 focus:border-blue-500"
+          }`}
           type="email"
           id="email"
           name="email"
@@ -68,16 +81,20 @@ function App() {
             required: "This field is required!",
           })}
         />
-        {errors?.email?.message && (
+        {/* {errors?.email?.message && (
           <p className="text-red-500">⚠️{errors.email.message}</p>
-        )}
+        )} */}
 
         <p className="mt-1 font-bold">
           Query type <span className="text-red-500">&#42;</span>
         </p>
 
         <div className="flex gap-3">
-          <div className="flex gap-2 border-2 px-3 py-1">
+          <div
+            className={`flex gap-2 border-2 px-3 py-1 rounded-md ${
+              errors.queryType ? "border-red-500" : ""
+            }`}
+          >
             <input
               className="custom-radio"
               type="radio"
@@ -92,7 +109,11 @@ function App() {
             <label htmlFor="general">General Enquiry</label>
           </div>
 
-          <div className="flex gap-2 border-2 px-3 py-1">
+          <div
+            className={`flex gap-2 border-2 px-3 py-1 rounded-md ${
+              errors.queryType ? "border-red-500" : ""
+            }`}
+          >
             <input
               className="custom-radio"
               type="radio"
@@ -107,15 +128,19 @@ function App() {
             <label htmlFor="support">Support Request</label>
           </div>
         </div>
-        {errors?.queryType?.message && (
+        {/* {errors?.queryType?.message && (
           <p className="text-red-500">⚠️{errors.queryType.message}</p>
-        )}
+        )} */}
 
         <label htmlFor="message" className="mt-1 font-bold">
           Message <span className="text-red-500">&#42;</span>
         </label>
         <textarea
-          className="border-2 border-slate-300 p-1"
+          className={`border-2 pl-1 rounded-md focus:outline-none ${
+            errors.message
+              ? "border-red-500 focus:border-red-500"
+              : "border-slate-300 focus:border-blue-500"
+          }`}
           name="message"
           id="message"
           cols="45"
@@ -125,11 +150,11 @@ function App() {
             required: "This field is required!",
           })}
         ></textarea>
-        {errors?.message?.message && (
+        {/* {errors?.message?.message && (
           <p className="text-red-500">⚠️{errors.message.message}</p>
-        )}
+        )} */}
 
-        <div className="flex gap-1 my-2">
+        <div>
           <input
             type="checkbox"
             id="consent"
@@ -139,15 +164,18 @@ function App() {
               required: "This selection is required!",
             })}
           />
-          <label htmlFor="consent">
+          <label
+            htmlFor="consent"
+            className={`${errors.consent ? "text-red-500" : ""}`}
+          >
             {" "}
             I consent to being contacted by the team{" "}
             <span className="text-red-500 font-bold">&#42;</span>
           </label>
         </div>
-        {errors?.consent?.message && (
+        {/* {errors?.consent?.message && (
           <p className="text-red-500">⚠️{errors.consent.message}</p>
-        )}
+        )} */}
 
         <button className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-md shadow-md transition hover:bg-blue-600 hover:shadow-lg">
           Submit
