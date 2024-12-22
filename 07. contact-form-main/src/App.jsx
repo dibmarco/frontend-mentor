@@ -18,7 +18,7 @@ function App() {
   }
 
   return (
-    <div className="flex justify-center items-center h-screen w-auto sm:w-[480px] mx-auto my-2">
+    <div className="flex justify-center items-center h-[95dvh] w-auto sm:w-[480px] mx-auto my-2">
       <form
         className="flex flex-col gap-1 p-5 shadow-lg border-2 rounded-md"
         onSubmit={handleSubmit(formSubmit, formError)}
