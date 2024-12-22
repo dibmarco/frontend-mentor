@@ -1,8 +1,11 @@
 import { useForm } from "react-hook-form";
 
 function App() {
-  const { register, handleSubmit, reset, formState } = useForm();
+  const { register, handleSubmit, reset, formState, watch } = useForm();
   const { errors } = formState;
+
+  // Watch the value of the selected radio button
+  const queryType = watch("queryType");
 
   function formSubmit(data) {
     console.log(data);
@@ -93,6 +96,8 @@ function App() {
           <div
             className={`flex gap-2 border-2 px-3 py-1 rounded-md ${
               errors.queryType ? "border-red-500" : ""
+            } ${
+              queryType === "general" ? "bg-slate-200" : "" // Add bg color if selected
             }`}
           >
             <input
@@ -112,6 +117,8 @@ function App() {
           <div
             className={`flex gap-2 border-2 px-3 py-1 rounded-md ${
               errors.queryType ? "border-red-500" : ""
+            } ${
+              queryType === "support" ? "bg-slate-200" : "" // Add bg color if selected
             }`}
           >
             <input
