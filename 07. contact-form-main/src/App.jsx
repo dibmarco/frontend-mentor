@@ -32,7 +32,7 @@ function App() {
           className={`border-2 pl-1 rounded-md focus:outline-none ${
             errors.firstName
               ? "border-red-500 focus:border-red-500"
-              : "border-slate-300 focus:border-blue-500"
+              : "border-slate-400 focus:border-blue-500 focus:ring-1"
           }`}
           type="text"
           id="fname"
@@ -53,7 +53,7 @@ function App() {
           className={`border-2 pl-1 rounded-md focus:outline-none ${
             errors.lastName
               ? "border-red-500 focus:border-red-500"
-              : "border-slate-300 focus:border-blue-500"
+              : "border-slate-400 focus:border-blue-500 focus:ring-1"
           }`}
           type="text"
           id="lname"
@@ -74,7 +74,7 @@ function App() {
           className={`border-2 pl-1 rounded-md focus:outline-none ${
             errors.email
               ? "border-red-500 focus:border-red-500"
-              : "border-slate-300 focus:border-blue-500"
+              : "border-slate-400 focus:border-blue-500 focus:ring-1"
           }`}
           type="email"
           id="email"
@@ -94,7 +94,7 @@ function App() {
 
         <div className="flex gap-3">
           <div
-            className={`flex gap-2 border-2 px-3 py-1 rounded-md ${
+            className={`flex gap-2 border-2 px-3 py-1 rounded-md border-slate-400 ${
               errors.queryType ? "border-red-500" : ""
             } ${
               queryType === "general" ? "bg-slate-200" : "" // Add bg color if selected
@@ -115,7 +115,7 @@ function App() {
           </div>
 
           <div
-            className={`flex gap-2 border-2 px-3 py-1 rounded-md ${
+            className={`flex gap-2 border-2 px-3 py-1 rounded-md border-slate-400 ${
               errors.queryType ? "border-red-500" : ""
             } ${
               queryType === "support" ? "bg-slate-200" : "" // Add bg color if selected
@@ -146,7 +146,7 @@ function App() {
           className={`border-2 pl-1 rounded-md focus:outline-none ${
             errors.message
               ? "border-red-500 focus:border-red-500"
-              : "border-slate-300 focus:border-blue-500"
+              : "border-slate-400 focus:border-blue-500 focus:ring-1"
           }`}
           name="message"
           id="message"
