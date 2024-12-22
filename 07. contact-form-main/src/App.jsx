@@ -1,14 +1,22 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 function App() {
-  const { register, handleSubmit, reset, formState, watch } = useForm();
+  const { register, handleSubmit, reset, formState, watch, setFocus } =
+    useForm();
   const { errors } = formState;
 
   // Watch the value of the selected radio button
   const queryType = watch("queryType");
 
   function formSubmit(data) {
-    console.log(data);
+    const transformedData = {
+      ...data,
+      firstName: data.firstName.toLowerCase(),
+      lastName: data.lastName.toLowerCase(),
+      email: data.email.toLowerCase(),
+    };
+    console.log(transformedData);
     alert("Form successfully submited!");
     reset();
   }
@@ -16,6 +24,10 @@ function App() {
   function formError(errors) {
     console.log(errors);
   }
+
+  useEffect(() => {
+    setFocus("firstName");
+  }, [setFocus]);
 
   return (
     <div className="flex justify-center items-center mx-auto h-screen">
@@ -96,7 +108,7 @@ function App() {
         )}
         {/* {errors?.email && errors?.email?.type === "required" && (
           <p className="text-red-500">⚠️ This field is required!</p>
-        )} */} 
+        )} */}
         {/* {errors?.email?.message && (
           <p className="text-red-500">⚠️{errors.email.message}</p>
         )} */}
@@ -186,7 +198,7 @@ function App() {
           />
           <label
             htmlFor="consent"
-            className={`${errors.consent ? "text-red-500" : ""}`}
+            className={`${errors.consent ? "text-red-500 font-semibold" : ""}`}
           >
             {" "}
             I consent to being contacted by the team{" "}
@@ -197,7 +209,7 @@ function App() {
           <p className="text-red-500">⚠️{errors.consent.message}</p>
         )} */}
 
-        <button className="bg-blue-500 text-white font-semibold py-2 px-4 mt-2 rounded-md shadow-md transition hover:bg-blue-600 hover:shadow-lg">
+        <button className="bg-blue-500 text-white font-semibold py-2 px-4 mt-2 rounded-md shadow-md transition hover:bg-blue-600 active:scale-[.97]">
           Submit
         </button>
       </form>
