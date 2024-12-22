@@ -29,7 +29,7 @@ function App() {
           First name <span className="text-red-500">&#42;</span>
         </label>
         <input
-          className={`border-2 pl-1 rounded-md focus:outline-none ${
+          className={`border-2 pl-1 rounded-md focus:outline-none transition-all ${
             errors.firstName
               ? "border-red-500 focus:border-red-500"
               : "border-slate-400 focus:border-blue-500 focus:ring-2"
@@ -50,7 +50,7 @@ function App() {
           Last name <span className="text-red-500">&#42;</span>
         </label>
         <input
-          className={`border-2 pl-1 rounded-md focus:outline-none ${
+          className={`border-2 pl-1 rounded-md focus:outline-none transition-all ${
             errors.lastName
               ? "border-red-500 focus:border-red-500"
               : "border-slate-400 focus:border-blue-500 focus:ring-2"
@@ -71,9 +71,11 @@ function App() {
           Email <span className="text-red-500">&#42;</span>
         </label>
         <input
-          className={`border-2 pl-1 rounded-md focus:outline-none ${
-            errors.email
-              ? "border-red-500 focus:border-red-500"
+          className={`border-2 pl-1 rounded-md focus:outline-none transition-all ${
+            errors?.email
+              ? errors.email?.type === "pattern"
+                ? "border-orange-400 focus:border-orange-400" // Orange border for pattern errors
+                : "border-red-500 focus:border-red-500" // Red border for required errors
               : "border-slate-400 focus:border-blue-500 focus:ring-2"
           }`}
           type="email"
@@ -82,8 +84,19 @@ function App() {
           aria-label="Email"
           {...register("email", {
             required: "This field is required!",
+            pattern: {
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+            },
           })}
         />
+        {errors.email && errors.email.type === "pattern" && (
+          <p className="text-orange-400">
+            ⚠️ Please enter a valid email address!
+          </p>
+        )}
+        {/* {errors?.email && errors?.email?.type === "required" && (
+          <p className="text-red-500">⚠️ This field is required!</p>
+        )} */} 
         {/* {errors?.email?.message && (
           <p className="text-red-500">⚠️{errors.email.message}</p>
         )} */}
@@ -94,7 +107,7 @@ function App() {
 
         <div className="flex gap-3">
           <div
-            className={`flex gap-2 border-2 px-3 py-1 rounded-md  ${
+            className={`flex gap-2 border-2 px-3 py-1 rounded-md transition-all  ${
               errors.queryType ? "border-red-500" : "border-slate-400"
             } ${
               queryType === "general" ? "bg-slate-200" : "" // Add bg color if selected
@@ -115,7 +128,7 @@ function App() {
           </div>
 
           <div
-            className={`flex gap-2 border-2 px-3 py-1 rounded-md  ${
+            className={`flex gap-2 border-2 px-3 py-1 rounded-md transition-all  ${
               errors.queryType ? "border-red-500" : "border-slate-400"
             } ${
               queryType === "support" ? "bg-slate-200" : "" // Add bg color if selected
@@ -143,7 +156,7 @@ function App() {
           Message <span className="text-red-500">&#42;</span>
         </label>
         <textarea
-          className={`border-2 pl-1 rounded-md focus:outline-none ${
+          className={`border-2 pl-1 rounded-md focus:outline-none transition-all ${
             errors.message
               ? "border-red-500 focus:border-red-500"
               : "border-slate-400 focus:border-blue-500 focus:ring-2"
