@@ -94,8 +94,8 @@ function App() {
 
         <div className="flex gap-3">
           <div
-            className={`flex gap-2 border-2 px-3 py-1 rounded-md border-slate-400 ${
-              errors.queryType ? "border-red-500" : ""
+            className={`flex gap-2 border-2 px-3 py-1 rounded-md  ${
+              errors.queryType ? "border-red-500" : "border-slate-400"
             } ${
               queryType === "general" ? "bg-slate-200" : "" // Add bg color if selected
             }`}
@@ -115,8 +115,8 @@ function App() {
           </div>
 
           <div
-            className={`flex gap-2 border-2 px-3 py-1 rounded-md border-slate-400 ${
-              errors.queryType ? "border-red-500" : ""
+            className={`flex gap-2 border-2 px-3 py-1 rounded-md  ${
+              errors.queryType ? "border-red-500" : "border-slate-400"
             } ${
               queryType === "support" ? "bg-slate-200" : "" // Add bg color if selected
             }`}
