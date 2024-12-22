@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import toast, { Toaster } from "react-hot-toast";
 
 function App() {
   const { register, handleSubmit, reset, formState, watch, setFocus } =
@@ -17,7 +18,11 @@ function App() {
       email: data.email.toLowerCase(),
     };
     console.log(transformedData);
-    alert("Form successfully submited!");
+    // alert("Form successfully submited!");
+    toast.success("Form successfully submited!", {
+      duration: 2000,
+      position: "top-center",
+    });
     reset();
   }
 
@@ -31,6 +36,7 @@ function App() {
 
   return (
     <div className="flex justify-center items-center mx-auto h-screen font-nunito">
+      <Toaster />
       <form
         className="flex flex-col gap-1 p-5 shadow-lg border-2 rounded-md w-auto sm:w-[500px]"
         onSubmit={handleSubmit(formSubmit, formError)}
@@ -119,11 +125,11 @@ function App() {
 
         <div className="flex gap-3">
           <div
-            className={`flex gap-2 border-2 px-3 py-1 rounded-md transition-all  ${
-              errors.queryType ? "border-red-500" : "border-slate-400"
-            } ${
-              queryType === "general" ? "bg-slate-200" : "" // Add bg color if selected
-            }`}
+            className={`flex gap-2 border-2 px-3 py-1 rounded-md transition-all ${
+              errors.queryType
+                ? "border-red-500"
+                : "border-slate-400 hover:ring-2 hover:border-blue-500"
+            } ${queryType === "general" ? "bg-slate-200" : ""}`}
           >
             <input
               className="custom-radio"
@@ -140,8 +146,10 @@ function App() {
           </div>
 
           <div
-            className={`flex gap-2 border-2 px-3 py-1 rounded-md transition-all  ${
-              errors.queryType ? "border-red-500" : "border-slate-400"
+            className={`flex gap-2 border-2 px-3 py-1 rounded-md transition-all ${
+              errors.queryType
+                ? "border-red-500"
+                : "border-slate-400 hover:ring-2 hover:border-blue-500"
             } ${
               queryType === "support" ? "bg-slate-200" : "" // Add bg color if selected
             }`}
