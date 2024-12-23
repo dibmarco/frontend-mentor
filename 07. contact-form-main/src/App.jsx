@@ -4,6 +4,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 import InputText from "./components/InputText";
 import InputEmail from "./components/InputEmail";
+import InputRadio from "./components/InputRadio";
 
 function App() {
   const { register, handleSubmit, reset, formState, watch, setFocus } =
@@ -72,49 +73,23 @@ function App() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-between">
-          <div
-            className={`flex gap-2 border-2 px-6 py-1 min-w-[220px] rounded-md transition-all ${
-              errors.queryType
-                ? "border-red-500 hover:ring-2 hover:ring-red-300"
-                : "border-slate-400 hover:ring-2 hover:border-blue-500"
-            } ${queryType === "general" ? "bg-slate-200" : ""}`}
-          >
-            <input
-              className="custom-radio"
-              type="radio"
-              id="general"
-              value="general"
-              name="queryType"
-              aria-label="General Enquiry"
-              {...register("queryType", {
-                required: "Please select your query type!",
-              })}
-            />
-            <label htmlFor="general">General Enquiry</label>
-          </div>
+          <InputRadio
+            name="queryType"
+            id="general"
+            ariaLabel="General Enquiry"
+            watch={queryType}
+            register={register}
+            error={errors.queryType}
+          />
 
-          <div
-            className={`flex gap-2 border-2 px-6 py-1 min-w-[220px] rounded-md transition-all ${
-              errors.queryType
-                ? "border-red-500 hover:ring-2 hover:ring-red-300"
-                : "border-slate-400 hover:ring-2 hover:border-blue-500"
-            } ${
-              queryType === "support" ? "bg-slate-200" : "" // Add bg color if selected
-            }`}
-          >
-            <input
-              className="custom-radio"
-              type="radio"
-              id="support"
-              value="support"
-              name="queryType"
-              aria-label="Support Request"
-              {...register("queryType", {
-                required: "Please select a query type!",
-              })}
-            />
-            <label htmlFor="support">Support Request</label>
-          </div>
+          <InputRadio
+            name="queryType"
+            id="support"
+            ariaLabel="Support Request"
+            watch={queryType}
+            register={register}
+            error={errors.queryType}
+          />
         </div>
 
         <label htmlFor="message" className="mt-1 font-bold">
