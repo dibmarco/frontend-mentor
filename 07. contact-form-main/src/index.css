@@ -21,3 +21,11 @@
   background-color: #3b82f6;
   border-color: #d1d5db;
 } */
+
+input {
+  @apply h-10 sm:h-8;
+}
+
+label {
+  @apply text-xl sm:text-base;
+}

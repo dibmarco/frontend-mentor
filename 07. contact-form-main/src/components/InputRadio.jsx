@@ -18,7 +18,7 @@ function InputRadio({ name, id, ariaLabel, watch, register, error }) {
           required: "Please select your query type!",
         })}
       />
-      <label htmlFor={id}>{ariaLabel}</label>
+      <label htmlFor={id} className="flex flex-col items-center justify-center">{ariaLabel}</label>
     </div>
   );
 }

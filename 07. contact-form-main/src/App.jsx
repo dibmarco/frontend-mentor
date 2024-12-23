@@ -41,7 +41,7 @@ function App() {
   }, [setFocus]);
 
   return (
-    <div className="flex justify-center items-center mx-auto h-screen font-nunito">
+    <div className="flex justify-center items-center mx-auto min-h-svh font-nunito">
       <Toaster />
       <form
         className="flex flex-col gap-1 p-5 shadow-lg border-2 rounded-md min-w-[365px] sm:max-w-[500px] mx-2 mt-2"
@@ -70,7 +70,7 @@ function App() {
           error={errors.email}
         />
 
-        <p className="mt-1 font-bold">
+        <p className="mt-1 font-bold text-xl sm:text-base">
           Query type <span className="text-red-500">&#42;</span>
         </p>
 

@@ -1,6 +1,6 @@
 function InputCheckbox({ name, ariaLabel, label, register, error }) {
   return (
-    <div className="mt-1">
+    <div className="flex items-center justify-left gap-2 mt-1">
       <input
         type="checkbox"
         id={name}
@@ -12,7 +12,7 @@ function InputCheckbox({ name, ariaLabel, label, register, error }) {
       />
       <label
         htmlFor={name}
-        className={`${error ? "text-red-500 font-semibold" : ""}`}
+        className={`${error ? "text-red-500 font-semibold" : ""} text-sm sm:text-base`}
       >
         {" "}
         {label} <span className="text-red-500 font-bold">&#42;</span>
