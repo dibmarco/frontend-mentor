@@ -5,6 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import InputText from "./components/InputText";
 import InputEmail from "./components/InputEmail";
 import InputRadio from "./components/InputRadio";
+import TextArea from "./components/TextArea";
 
 function App() {
   const { register, handleSubmit, reset, formState, watch, setFocus } =
@@ -92,24 +93,14 @@ function App() {
           />
         </div>
 
-        <label htmlFor="message" className="mt-1 font-bold">
-          Message <span className="text-red-500">&#42;</span>
-        </label>
-        <textarea
-          className={`border-2 pl-1 rounded-md focus:outline-none transition-all ${
-            errors.message
-              ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-300"
-              : "border-slate-400 focus:border-blue-500 focus:ring-2"
-          }`}
+        <TextArea
           name="message"
-          id="message"
+          ariaLabel="Message"
           cols="45"
           rows="8"
-          aria-label="Message"
-          {...register("message", {
-            required: "This field is required!",
-          })}
-        ></textarea>
+          register={register}
+          error={errors.message}
+        />
 
         <div className="mt-1">
           <input
