@@ -2,9 +2,6 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 
-import InputText from "./components/InputText";
-import InputEmail from "./components/InputEmail";
-
 function App() {
   const { register, handleSubmit, reset, formState, watch, setFocus } =
     useForm();
@@ -16,8 +13,8 @@ function App() {
   function formSubmit(data) {
     const transformedData = {
       ...data,
-      fname: data.fname.toLowerCase(),
-      lname: data.lname.toLowerCase(),
+      firstName: data.firstName.toLowerCase(),
+      lastName: data.lastName.toLowerCase(),
       email: data.email.toLowerCase(),
     };
     console.log(transformedData);
@@ -34,7 +31,7 @@ function App() {
   }
 
   useEffect(() => {
-    setFocus("fname");
+    setFocus("firstName");
   }, [setFocus]);
 
   return (
@@ -46,26 +43,69 @@ function App() {
       >
         <h1 className="text-2xl font-bold text-center uppercase">Contact us</h1>
 
-        <InputText
+        <label htmlFor="fname" className="font-bold">
+          First name <span className="text-red-500">&#42;</span>
+        </label>
+        <input
+          className={`border-2 pl-1 rounded-md focus:outline-none transition-all ${
+            errors.firstName
+              ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-300"
+              : "border-slate-400 focus:border-blue-500 focus:ring-2"
+          }`}
+          type="text"
+          id="fname"
           name="fname"
-          ariaLabel="First name"
-          register={register}
-          error={errors.fname}
+          aria-label="First name"
+          {...register("firstName", {
+            required: "This field is required!",
+          })}
         />
 
-        <InputText
+        <label htmlFor="lname" className="mt-1 font-bold">
+          Last name <span className="text-red-500">&#42;</span>
+        </label>
+        <input
+          className={`border-2 pl-1 rounded-md focus:outline-none transition-all ${
+            errors.lastName
+              ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-300"
+              : "border-slate-400 focus:border-blue-500 focus:ring-2"
+          }`}
+          type="text"
+          id="lname"
           name="lname"
-          ariaLabel="Last name"
-          register={register}
-          error={errors.lname}
+          aria-label="Last name"
+          {...register("lastName", {
+            required: "This field is required!",
+          })}
         />
 
-        <InputEmail
+        <label htmlFor="email" className="mt-1 font-bold">
+          Email <span className="text-red-500">&#42;</span>
+        </label>
+        <input
+          className={`border-2 pl-1 rounded-md focus:outline-none transition-all ${
+            errors?.email
+              ? errors.email?.type === "pattern"
+                ? "border-orange-400 focus:border-orange-400 focus:ring-2 focus:ring-red-300" // Orange border for pattern errors
+                : "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-300" // Red border for required errors
+              : "border-slate-400 focus:border-blue-500 focus:ring-2"
+          }`}
+          type="email"
+          id="email"
           name="email"
-          ariaLabel="Email"
-          register={register}
-          error={errors.email}
+          aria-label="Email"
+          {...register("email", {
+            required: "This field is required!",
+            pattern: {
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+            },
+          })}
         />
+        {/* {errors.email && errors.email.type === "pattern" && (
+          <p className="text-orange-400">
+            ⚠️ Please enter a valid email address!
+          </p>
+        )} */}
 
         <p className="mt-1 font-bold">
           Query type <span className="text-red-500">&#42;</span>
