@@ -10,9 +10,9 @@ function InputRadio({ name, id, ariaLabel, watch, register, error }) {
       <input
         className="custom-radio"
         type="radio"
+        name={name}
         id={id}
         value={id}
-        name={name}
         aria-label={ariaLabel}
         {...register(name, {
           required: "Please select your query type!",
