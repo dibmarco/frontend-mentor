@@ -20,7 +20,7 @@ function App() {
     console.log(transformedData);
     // alert("Form successfully submited!");
     toast.success("Form successfully submited!", {
-      duration: 2000,
+      duration: 2500,
       position: "top-center",
     });
     reset();
@@ -38,7 +38,7 @@ function App() {
     <div className="flex justify-center items-center mx-auto h-screen font-nunito">
       <Toaster />
       <form
-        className="flex flex-col gap-1 p-5 shadow-lg border-2 rounded-md w-auto sm:w-[500px]"
+        className="flex flex-col gap-1 p-5 shadow-lg border-2 rounded-md min-w-[365px] sm:max-w-[500px] mx-2 mt-2"
         onSubmit={handleSubmit(formSubmit, formError)}
       >
         <h1 className="text-2xl font-bold text-center uppercase">Contact us</h1>
@@ -60,9 +60,6 @@ function App() {
             required: "This field is required!",
           })}
         />
-        {/* {errors.firstName && (
-          <p className="text-red-500">⚠️ {errors.firstName.message}</p>
-        )} */}
 
         <label htmlFor="lname" className="mt-1 font-bold">
           Last name <span className="text-red-500">&#42;</span>
@@ -81,9 +78,6 @@ function App() {
             required: "This field is required!",
           })}
         />
-        {/* {errors?.lastName?.message && (
-          <p className="text-red-500">⚠️{errors.lastName.message}</p>
-        )} */}
 
         <label htmlFor="email" className="mt-1 font-bold">
           Email <span className="text-red-500">&#42;</span>
@@ -107,25 +101,19 @@ function App() {
             },
           })}
         />
-        {errors.email && errors.email.type === "pattern" && (
+        {/* {errors.email && errors.email.type === "pattern" && (
           <p className="text-orange-400">
             ⚠️ Please enter a valid email address!
           </p>
-        )}
-        {/* {errors?.email && errors?.email?.type === "required" && (
-          <p className="text-red-500">⚠️ This field is required!</p>
-        )} */}
-        {/* {errors?.email?.message && (
-          <p className="text-red-500">⚠️{errors.email.message}</p>
         )} */}
 
         <p className="mt-1 font-bold">
           Query type <span className="text-red-500">&#42;</span>
         </p>
 
-        <div className="flex gap-3">
+        <div className="flex flex-col sm:flex-row gap-3 justify-between">
           <div
-            className={`flex gap-2 border-2 px-3 py-1 rounded-md transition-all ${
+            className={`flex gap-2 border-2 px-6 py-1 min-w-[220px] rounded-md transition-all ${
               errors.queryType
                 ? "border-red-500 hover:ring-2 hover:ring-red-300"
                 : "border-slate-400 hover:ring-2 hover:border-blue-500"
@@ -146,7 +134,7 @@ function App() {
           </div>
 
           <div
-            className={`flex gap-2 border-2 px-3 py-1 rounded-md transition-all ${
+            className={`flex gap-2 border-2 px-6 py-1 min-w-[220px] rounded-md transition-all ${
               errors.queryType
                 ? "border-red-500 hover:ring-2 hover:ring-red-300"
                 : "border-slate-400 hover:ring-2 hover:border-blue-500"
@@ -168,9 +156,6 @@ function App() {
             <label htmlFor="support">Support Request</label>
           </div>
         </div>
-        {/* {errors?.queryType?.message && (
-          <p className="text-red-500">⚠️{errors.queryType.message}</p>
-        )} */}
 
         <label htmlFor="message" className="mt-1 font-bold">
           Message <span className="text-red-500">&#42;</span>
@@ -190,9 +175,6 @@ function App() {
             required: "This field is required!",
           })}
         ></textarea>
-        {/* {errors?.message?.message && (
-          <p className="text-red-500">⚠️{errors.message.message}</p>
-        )} */}
 
         <div className="mt-1">
           <input
@@ -213,9 +195,6 @@ function App() {
             <span className="text-red-500 font-bold">&#42;</span>
           </label>
         </div>
-        {/* {errors?.consent?.message && (
-          <p className="text-red-500">⚠️{errors.consent.message}</p>
-        )} */}
 
         <button className="bg-blue-500 text-white font-semibold py-2 px-4 mt-2 rounded-md shadow-md transition hover:bg-blue-600 active:scale-[.97]">
           Submit
