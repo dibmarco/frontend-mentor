@@ -6,6 +6,8 @@ import InputText from "./components/InputText";
 import InputEmail from "./components/InputEmail";
 import InputRadio from "./components/InputRadio";
 import TextArea from "./components/TextArea";
+import InputCheckbox from "./components/InputCheckbox";
+import SubmitButton from "./components/SubmitButton";
 
 function App() {
   const { register, handleSubmit, reset, formState, watch, setFocus } =
@@ -23,7 +25,6 @@ function App() {
       email: data.email.toLowerCase(),
     };
     console.log(transformedData);
-    // alert("Form successfully submited!");
     toast.success("Form successfully submited!", {
       duration: 2500,
       position: "top-center",
@@ -102,29 +103,15 @@ function App() {
           error={errors.message}
         />
 
-        <div className="mt-1">
-          <input
-            type="checkbox"
-            id="consent"
-            name="consent"
-            aria-label="Consent"
-            {...register("consent", {
-              required: "This selection is required!",
-            })}
-          />
-          <label
-            htmlFor="consent"
-            className={`${errors.consent ? "text-red-500 font-semibold" : ""}`}
-          >
-            {" "}
-            I consent to being contacted by the team{" "}
-            <span className="text-red-500 font-bold">&#42;</span>
-          </label>
-        </div>
+        <InputCheckbox
+          name="consent"
+          ariaLabel="Consent"
+          label="I consent to being contacted by the team"
+          register={register}
+          error={errors.consent}
+        />
 
-        <button className="bg-blue-500 text-white font-semibold py-2 px-4 mt-2 rounded-md shadow-md transition hover:bg-blue-600 active:scale-[.97]">
-          Submit
-        </button>
+        <SubmitButton />
       </form>
     </div>
   );
