@@ -24,17 +24,26 @@ function App() {
       lname: data.lname.toLowerCase(),
       email: data.email.toLowerCase(),
     };
-    console.log(transformedData);
-    toast.success("Form successfully submited!", {
+    // console.log(transformedData);
+    toast.success("Form successfully submitted!", {
       duration: 2500,
       position: "top-center",
     });
-    reset();
+
+    // Callback in reset to set focus after resetting
+    reset(undefined, {
+      keepValues: false, // Ensures form values are cleared
+      keepErrors: false, // Clears form errors
+      keepDirty: false, // Resets dirty fields
+    });
+
+    // Delay to ensure state is reset before focusing
+    setTimeout(() => setFocus("fname"), 2500);
   }
 
-  function formError(errors) {
-    console.log(errors);
-  }
+  // function formError(errors) {
+  //   console.log(errors);
+  // }
 
   useEffect(() => {
     setFocus("fname");
@@ -45,7 +54,7 @@ function App() {
       <Toaster />
       <form
         className="flex flex-col gap-1 p-5 shadow-lg border-2 rounded-md min-w-[365px] sm:max-w-[500px] mx-2 mt-2"
-        onSubmit={handleSubmit(formSubmit, formError)}
+        onSubmit={handleSubmit(formSubmit /* , formError */)}
       >
         <h1 className="text-2xl font-bold text-center uppercase">Contact us</h1>
 
